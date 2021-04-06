@@ -18475,12 +18475,12 @@ androidx.appcompat.view.StandaloneActionMode:
     public void onCloseSubMenu(androidx.appcompat.view.menu.SubMenuBuilder)
     public boolean isUiFocusable()
 com.google.android.gms.common.api.internal.zacv
-androidx.camera.camera2.-$$Lambda$-ClV4j7i2VvSLU46UBidniq-Rcw:
-    public final androidx.camera.core.impl.CameraFactory newInstance(android.content.Context,androidx.camera.core.impl.CameraThreadConfig)
-androidx.camera.camera2.-$$Lambda$Camera2Config$g_hY10kZhqC56um0PalOLTzuFlU:
-    public final androidx.camera.core.impl.UseCaseConfigFactory newInstance(android.content.Context)
 androidx.camera.camera2.-$$Lambda$Camera2Config$kM_8_AOrSiwnMJJHxVDBofqFYQc:
     public final androidx.camera.core.impl.CameraDeviceSurfaceManager newInstance(android.content.Context)
+androidx.camera.camera2.-$$Lambda$Camera2Config$g_hY10kZhqC56um0PalOLTzuFlU:
+    public final androidx.camera.core.impl.UseCaseConfigFactory newInstance(android.content.Context)
+androidx.camera.camera2.-$$Lambda$-ClV4j7i2VvSLU46UBidniq-Rcw:
+    public final androidx.camera.core.impl.CameraFactory newInstance(android.content.Context,androidx.camera.core.impl.CameraThreadConfig)
 com.google.android.gms.internal.mlkit_vision_barcode.zzfs:
     private static final com.google.firebase.encoders.FieldDescriptor zzb
     private static final com.google.firebase.encoders.FieldDescriptor zzc

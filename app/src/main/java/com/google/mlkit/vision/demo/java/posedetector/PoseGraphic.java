@@ -165,9 +165,9 @@ public class PoseGraphic extends Graphic {
     drawLine(canvas, rightHeel, rightFootIndex, rightPaint);
 
     boolean squat = true; //나중에 선택사항 만들어서 선택됐을 때 true로 변경
-    boolean lunge = true;
-    boolean situp = true;
-    boolean pushup = true;
+    boolean lunge = false;
+    boolean situp = false;
+    boolean pushup = false;
 
     if (squat) {
       //무릎이 발밖으로 많이 나올경우
@@ -186,15 +186,15 @@ public class PoseGraphic extends Graphic {
         }
     }
 
-    if(lunge){
+    if(lunge) {
       //상체가 기울어질 경우
-      if(Math.abs(leftShoulder.getPosition().x - leftHip.getPosition().x) > 10 || Math.abs(rightShoulder.getPosition().x - rightHip.getPosition().x) > 10){
+      if (Math.abs(leftShoulder.getPosition().x - leftHip.getPosition().x) > 10 || Math.abs(rightShoulder.getPosition().x - rightHip.getPosition().x) > 10) {
         canvas.drawText("상체를 똑바로 세워주세요 ",
                 translateX(150),
                 translateY(150),
                 whitePaint);
       }
-      
+
       //무릎이 발밖으로 많이 나올경우
       else if (leftKnee.getPosition().x + 20 < leftFootIndex.getPosition().x || rightKnee.getPosition().x + 20 < rightFootIndex.getPosition().x) {
         canvas.drawText("무릎을 넣어주세요",
@@ -205,20 +205,21 @@ public class PoseGraphic extends Graphic {
 
       // 뒷발의 무릎이 지면에 거의 닿을정도로 앉아야한다.
       // 앞발 뒷발 구분
-      if(leftFootIndex.getPosition().x < rightFootIndex.getPosition().x){ //왼발이 앞에 있을 때
-        if(rightHeel.getPosition().y>rightKnee.getPosition().y){
-          canvas.drawText("더 내려가주세요",
-                  translateX(150),
-                  translateY(150),
-                  whitePaint);
-        }
-      }
-      else{ // 오른발이 앞에 있을 때
-        if(leftHeel.getPosition().y>leftKnee.getPosition().y){
-          canvas.drawText("더 내려가주세요",
-                  translateX(150),
-                  translateY(150),
-                  whitePaint);
+      else {
+        if (leftFootIndex.getPosition().x < rightFootIndex.getPosition().x) { //왼발이 앞에 있을 때
+          if (rightHeel.getPosition().y > rightKnee.getPosition().y) {
+            canvas.drawText("더 내려가주세요",
+                    translateX(150),
+                    translateY(150),
+                    whitePaint);
+          }
+        } else { // 오른발이 앞에 있을 때
+          if (leftHeel.getPosition().y > leftKnee.getPosition().y) {
+            canvas.drawText("더 내려가주세요",
+                    translateX(150),
+                    translateY(150),
+                    whitePaint);
+          }
         }
       }
     }

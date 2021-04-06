@@ -1,4 +1,4 @@
-#Tue Apr 06 20:45:08 KST 2021
-base.0=C\:\\Users\\GaYeon\\AndroidStudioProjects\\Final_Model\\app\\build\\intermediates\\dex\\proguard\\minifyProguardWithR8\\classes.dex
+#Tue Apr 06 21:16:35 KST 2021
+base.0=C\:\\Users\\dbwls\\Desktop\\vision-quickstart\\vision-quickstart\\app\\build\\intermediates\\dex\\proguard\\minifyProguardWithR8\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

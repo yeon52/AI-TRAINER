@@ -18,6 +18,8 @@ com/google/mlkit/vision/demo/java/posedetector/classification/EMASmoothing.java
  com.google.mlkit.vision.demo.java.posedetector.classification.EMASmoothing
 com/google/mlkit/vision/demo/CameraImageGraphic.java
  com.google.mlkit.vision.demo.CameraImageGraphic
+com/google/mlkit/vision/demo/java/posedetector/classification/PoseFeedback.java
+ com.google.mlkit.vision.demo.java.posedetector.classification.PoseFeedback
 com/google/mlkit/vision/demo/InferenceInfoGraphic.java
  com.google.mlkit.vision.demo.InferenceInfoGraphic
 com/google/mlkit/vision/demo/java/posedetector/classification/PoseClassifierProcessor.java
@@ -55,8 +57,6 @@ com/google/mlkit/vision/demo/java/LivePreviewActivity.java
  com.google.mlkit.vision.demo.java.LivePreviewActivity
 com/google/mlkit/vision/demo/java/posedetector/classification/PoseSample.java
  com.google.mlkit.vision.demo.java.posedetector.classification.PoseSample
-com/google/mlkit/vision/demo/java/posedetector/classification/PoseFeedback.java
- com.google.mlkit.vision.demo.java.posedetector.classification.PoseFeedback
 com/google/mlkit/vision/demo/java/posedetector/PoseGraphic.java
  com.google.mlkit.vision.demo.java.posedetector.PoseGraphic
 com/google/mlkit/vision/demo/java/posedetector/PoseDetectorProcessor.java
