@@ -164,6 +164,87 @@ public class PoseGraphic extends Graphic {
     drawLine(canvas, rightAnkle, rightHeel, rightPaint);
     drawLine(canvas, rightHeel, rightFootIndex, rightPaint);
 
+    boolean squat = true; //나중에 선택사항 만들어서 선택됐을 때 true로 변경
+    boolean lunge = true;
+    boolean situp = true;
+    boolean pushup = true;
+
+    if (squat) {
+      //무릎이 발밖으로 많이 나올경우
+      if (leftKnee.getPosition().x + 20 < leftFootIndex.getPosition().x || rightKnee.getPosition().x + 20 < rightFootIndex.getPosition().x) {
+        canvas.drawText("무릎을 넣어주세요",
+                translateX(150),
+                translateY(150),
+                whitePaint);
+      } 
+      //무릎과 엉덩이의 각도가 90도보다 작아지게 제대로 앉지 않았을 경우
+      else if(leftKnee.getPosition().y > leftHip.getPosition().y || rightKnee.getPosition().y > rightHip.getPosition().y) {
+          canvas.drawText("더 앉아주세요",
+                  translateX(150),
+                  translateY(150),
+                  whitePaint);
+        }
+    }
+
+    if(lunge){
+      //상체가 기울어질 경우
+      if(Math.abs(leftShoulder.getPosition().x - leftHip.getPosition().x) > 10 || Math.abs(rightShoulder.getPosition().x - rightHip.getPosition().x) > 10){
+        canvas.drawText("상체를 똑바로 세워주세요 ",
+                translateX(150),
+                translateY(150),
+                whitePaint);
+      }
+      
+      //무릎이 발밖으로 많이 나올경우
+      else if (leftKnee.getPosition().x + 20 < leftFootIndex.getPosition().x || rightKnee.getPosition().x + 20 < rightFootIndex.getPosition().x) {
+        canvas.drawText("무릎을 넣어주세요",
+                translateX(150),
+                translateY(150),
+                whitePaint);
+      }
+
+      // 뒷발의 무릎이 지면에 거의 닿을정도로 앉아야한다.
+
+
+
+    }
+
+    if(situp){
+      //팔꿈치가 무릎에 닿을 정도로 올라와야함
+      if(Math.abs(leftElbow.getPosition().x - leftKnee.getPosition().x) > 10 || Math.abs(rightElbow.getPosition().x - rightKnee.getPosition().x) > 10){
+        canvas.drawText("더 올라와주세요",
+                translateX(150),
+                translateY(150),
+                whitePaint);
+      }
+      //발이 바닥과 떨어지지 않게 한다
+      else if(Math.abs(leftHeel.getPosition().y - leftHip.getPosition().y)>10 || Math.abs(rightHeel.getPosition().y - rightHip.getPosition().y)>10){
+        canvas.drawText("발을 땅에 붙여주세요",
+                translateX(150),
+                translateY(150),
+                whitePaint);
+      }
+    }
+
+    if(pushup){
+      //내려 갔을 때 몸이 일자가 되어야함 (엉덩이가 내려가거나 올라가면 안됨)
+      if(Math.abs(leftShoulder.getPosition().y - leftHip.getPosition().y) > 10 || Math.abs(rightShoulder.getPosition().y - rightHip.getPosition().y) > 10){
+        canvas.drawText("몸을 일자로 곧게 펴주세요",
+                translateX(150),
+                translateY(150),
+                whitePaint);
+      }
+
+      // 몸이 바닥에 닫기 직전까지 내려야 한다.
+      else if(Math.abs(leftShoulder.getPosition().y - leftWrist.getPosition().y) > 10 || Math.abs(rightShoulder.getPosition().y - rightWrist.getPosition().y) > 10){
+        canvas.drawText("더 내려가주세요",
+                translateX(150),
+                translateY(150),
+                whitePaint);
+      }
+    }
+
+    
     // Draw inFrameLikelihood for all points
     if (showInFrameLikelihood) {
       for (PoseLandmark landmark : landmarks) {
@@ -175,6 +256,7 @@ public class PoseGraphic extends Graphic {
       }
     }
   }
+
 
   void drawPoint(Canvas canvas, PoseLandmark landmark, Paint paint) {
     PointF point = landmark.getPosition();

@@ -3306,6 +3306,7 @@ com.google.gson.Gson$1
 com.google.common.collect.StandardTable$Column$EntrySetIterator
 androidx.camera.view.preview.transform.PreviewTransform
 com.google.common.escape.UnicodeEscaper
+com.google.mlkit.vision.demo.java.posedetector.classification.PoseFeedback
 com.google.common.io.FileWriteMode
 com.google.android.gms.internal.vision.zzdz
 com.google.android.gms.common.data.SingleRefDataBufferIterator
@@ -11750,9 +11751,6 @@ com.google.android.gms.internal.mlkit_vision_internal_vkp.zzasu:
 com.google.common.reflect.Types$JavaVersion
 kotlin.coroutines.intrinsics.IntrinsicsKt__IntrinsicsJvmKt
 com.google.gson.internal.bind.TypeAdapters$34
-com.google.android.gms.internal.vision.zza:
-    static void <clinit>()
-    private static com.google.android.gms.internal.vision.zzc zza
 com.google.common.annotations.GwtCompatible
 androidx.exifinterface.media.ExifInterface$ExifTag
 com.google.android.gms.common.internal.StringResourceValueReader
@@ -12511,7 +12509,6 @@ com.google.android.gms.internal.mlkit_vision_object_detection_custom.zzcy:
     private void <init>()
 com.google.android.gms.internal.mlkit_vision_text.zzp:
     public void <init>()
-com.google.android.gms.internal.vision.zzc
 com.google.common.base.FinalizableSoftReference
 androidx.camera.camera2.internal.CaptureSession$State
 androidx.camera.lifecycle.LifecycleCameraProvider
@@ -18478,12 +18475,12 @@ androidx.appcompat.view.StandaloneActionMode:
     public void onCloseSubMenu(androidx.appcompat.view.menu.SubMenuBuilder)
     public boolean isUiFocusable()
 com.google.android.gms.common.api.internal.zacv
-androidx.camera.camera2.-$$Lambda$Camera2Config$kM_8_AOrSiwnMJJHxVDBofqFYQc:
-    public final androidx.camera.core.impl.CameraDeviceSurfaceManager newInstance(android.content.Context)
 androidx.camera.camera2.-$$Lambda$-ClV4j7i2VvSLU46UBidniq-Rcw:
     public final androidx.camera.core.impl.CameraFactory newInstance(android.content.Context,androidx.camera.core.impl.CameraThreadConfig)
 androidx.camera.camera2.-$$Lambda$Camera2Config$g_hY10kZhqC56um0PalOLTzuFlU:
     public final androidx.camera.core.impl.UseCaseConfigFactory newInstance(android.content.Context)
+androidx.camera.camera2.-$$Lambda$Camera2Config$kM_8_AOrSiwnMJJHxVDBofqFYQc:
+    public final androidx.camera.core.impl.CameraDeviceSurfaceManager newInstance(android.content.Context)
 com.google.android.gms.internal.mlkit_vision_barcode.zzfs:
     private static final com.google.firebase.encoders.FieldDescriptor zzb
     private static final com.google.firebase.encoders.FieldDescriptor zzc
@@ -21898,6 +21895,8 @@ com.google.android.gms.internal.mlkit_vision_object_detection_custom.zznw:
 com.google.android.gms.internal.mlkit_vision_internal_vkp.zzagr:
     public static final com.google.android.gms.internal.mlkit_vision_internal_vkp.zzagr zze
     private static final com.google.android.gms.internal.mlkit_vision_internal_vkp.zzact zzf
+com.google.android.gms.internal.vision.zza:
+    private static com.google.android.gms.internal.vision.zzc zza
 com.google.android.gms.internal.mlkit_vision_object_detection_bundled.zzqv:
     private static final com.google.firebase.encoders.FieldDescriptor zzb
     private static final com.google.firebase.encoders.FieldDescriptor zzc
@@ -22147,6 +22146,7 @@ com.google.android.gms.internal.mlkit_vision_object_detection_custom.zzny:
     private static final com.google.firebase.encoders.FieldDescriptor zzb
     private static final com.google.firebase.encoders.FieldDescriptor zzc
     private static final com.google.firebase.encoders.FieldDescriptor zzd
+com.google.android.gms.internal.vision.zzc
 com.google.android.gms.internal.mlkit_vision_segmentation_bundled.zzmq:
     private final byte[] zza
 com.google.android.gms.internal.mlkit_vision_pose_common.zzsa

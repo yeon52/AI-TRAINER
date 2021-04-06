@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\GaYeon\\Desktop\\mlkit-master\\android\\vision-quickstart\\app\\build\\intermediates\\incremental\\mergeProguardResources\\merged.dir\\values-es-rUS\\values-es-rUS.xml",
+            "outputFile": "C:\\Users\\GaYeon\\AndroidStudioProjects\\Final_Model\\app\\build\\intermediates\\incremental\\mergeProguardResources\\merged.dir\\values-es-rUS\\values-es-rUS.xml",
             "map": [
                 {
                     "source": "C:\\Users\\GaYeon\\.gradle\\caches\\transforms-2\\files-2.1\\a2e4059bb053660265454733f2ea3145\\jetified-play-services-basement-17.6.0\\res\\values-es-rUS\\values.xml",

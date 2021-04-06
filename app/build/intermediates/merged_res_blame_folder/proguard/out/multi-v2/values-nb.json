@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\GaYeon\\Desktop\\mlkit-master\\android\\vision-quickstart\\app\\build\\intermediates\\incremental\\mergeProguardResources\\merged.dir\\values-nb\\values-nb.xml",
+            "outputFile": "C:\\Users\\GaYeon\\AndroidStudioProjects\\Final_Model\\app\\build\\intermediates\\incremental\\mergeProguardResources\\merged.dir\\values-nb\\values-nb.xml",
             "map": [
                 {
                     "source": "C:\\Users\\GaYeon\\.gradle\\caches\\transforms-2\\files-2.1\\f1f33b62267c75a6f99331b460a092b0\\appcompat-1.2.0\\res\\values-nb\\values-nb.xml",

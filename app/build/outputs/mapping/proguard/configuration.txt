@@ -1,4 +1,4 @@
-# The proguard configuration file for the following section is C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\build\intermediates\proguard-files\proguard-android.txt-4.1.1
+# The proguard configuration file for the following section is C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\build\intermediates\proguard-files\proguard-android.txt-4.1.1
 # This is a configuration file for ProGuard.
 # http://proguard.sourceforge.net/index.html#manual/usage.html
 #
@@ -110,8 +110,8 @@
 # These classes are duplicated between android.jar and core-lambda-stubs.jar.
 -dontnote java.lang.invoke.**
 
-# End of content from C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\build\intermediates\proguard-files\proguard-android.txt-4.1.1
-# The proguard configuration file for the following section is C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\build\intermediates\aapt_proguard_file\proguard\aapt_rules.txt
+# End of content from C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\build\intermediates\proguard-files\proguard-android.txt-4.1.1
+# The proguard configuration file for the following section is C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\build\intermediates\aapt_proguard_file\proguard\aapt_rules.txt
 -keep class androidx.core.app.CoreComponentFactory { <init>(); }
 -keep class androidx.lifecycle.ProcessLifecycleOwnerInitializer { <init>(); }
 -keep class androidx.multidex.MultiDexApplication { <init>(); }
@@ -170,7 +170,7 @@
 -keep class com.google.mlkit.vision.demo.GraphicOverlay { <init>(android.content.Context, android.util.AttributeSet); }
 
 
-# End of content from C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\build\intermediates\aapt_proguard_file\proguard\aapt_rules.txt
+# End of content from C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\build\intermediates\aapt_proguard_file\proguard\aapt_rules.txt
 # The proguard configuration file for the following section is C:\Users\GaYeon\.gradle\caches\transforms-2\files-2.1\ea52a57007cfcb01b3654e1e54154431\jetified-barcode-scanning-16.1.1\proguard.txt
 # We keep all fields for every generated proto file as the runtime uses
 # reflection over them that ProGuard cannot detect. Without this keep

@@ -12,28 +12,28 @@
 12    APIs.
 13    -->
 14    <uses-sdk
-14-->C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\src\main\AndroidManifest.xml:13:5-16:63
+14-->C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\src\main\AndroidManifest.xml:13:5-16:63
 15        android:minSdkVersion="16"
-15-->C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\src\main\AndroidManifest.xml:13:5-16:63
+15-->C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\src\main\AndroidManifest.xml:13:5-16:63
 16        android:targetSdkVersion="29" />
-16-->C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\src\main\AndroidManifest.xml:13:5-16:63
+16-->C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\src\main\AndroidManifest.xml:13:5-16:63
 17
 18    <uses-feature android:name="android.hardware.camera" />
-18-->C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\src\main\AndroidManifest.xml:18:5-59
-18-->C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\src\main\AndroidManifest.xml:18:19-57
+18-->C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\src\main\AndroidManifest.xml:18:5-59
+18-->C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\src\main\AndroidManifest.xml:18:19-57
 19
 20    <uses-permission android:name="android.permission.INTERNET" />
-20-->C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\src\main\AndroidManifest.xml:20:5-66
-20-->C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\src\main\AndroidManifest.xml:20:22-64
+20-->C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\src\main\AndroidManifest.xml:20:5-66
+20-->C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\src\main\AndroidManifest.xml:20:22-64
 21    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-21-->C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\src\main\AndroidManifest.xml:21:5-80
-21-->C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\src\main\AndroidManifest.xml:21:22-78
+21-->C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\src\main\AndroidManifest.xml:21:5-80
+21-->C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\src\main\AndroidManifest.xml:21:22-78
 22    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-22-->C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\src\main\AndroidManifest.xml:22:5-79
-22-->C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\src\main\AndroidManifest.xml:22:22-77
+22-->C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\src\main\AndroidManifest.xml:22:5-79
+22-->C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\src\main\AndroidManifest.xml:22:22-77
 23    <uses-permission android:name="android.permission.CAMERA" />
-23-->C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\src\main\AndroidManifest.xml:23:5-64
-23-->C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\src\main\AndroidManifest.xml:23:22-62
+23-->C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\src\main\AndroidManifest.xml:23:5-64
+23-->C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\src\main\AndroidManifest.xml:23:22-62
 24
 25    <!-- Although the *SdkVersion is captured in gradle build files, this is required for non gradle builds -->
 26    <!-- <uses-sdk android:minSdkVersion="14"/> -->
@@ -42,61 +42,61 @@
 27-->[com.google.android.datatransport:transport-backend-cct:2.3.2] C:\Users\GaYeon\.gradle\caches\transforms-2\files-2.1\7e0984d9e07ed9f648c47bf7aa297bb4\jetified-transport-backend-cct-2.3.2\AndroidManifest.xml:25:22-76
 28
 29    <application
-29-->C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\src\main\AndroidManifest.xml:25:5-56:19
+29-->C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\src\main\AndroidManifest.xml:25:5-56:19
 30        android:name="androidx.multidex.MultiDexApplication"
-30-->C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\src\main\AndroidManifest.xml:26:9-61
+30-->C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\src\main\AndroidManifest.xml:26:9-61
 31        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 31-->[androidx.core:core:1.3.1] C:\Users\GaYeon\.gradle\caches\transforms-2\files-2.1\9ce39da31d83914ee9b08fa3e90e05b5\core-1.3.1\AndroidManifest.xml:24:18-86
 32        android:icon="@drawable/logo_mlkit"
-32-->C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\src\main\AndroidManifest.xml:27:9-44
+32-->C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\src\main\AndroidManifest.xml:27:9-44
 33        android:label="@string/app_name"
-33-->C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\src\main\AndroidManifest.xml:28:9-41
+33-->C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\src\main\AndroidManifest.xml:28:9-41
 34        android:testOnly="true"
 35        android:theme="@style/Theme.AppCompat" >
-35-->C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\src\main\AndroidManifest.xml:29:9-47
+35-->C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\src\main\AndroidManifest.xml:29:9-47
 36        <meta-data
-36-->C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\src\main\AndroidManifest.xml:31:9-33:68
+36-->C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\src\main\AndroidManifest.xml:31:9-33:68
 37            android:name="com.google.android.gms.version"
-37-->C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\src\main\AndroidManifest.xml:32:13-58
+37-->C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\src\main\AndroidManifest.xml:32:13-58
 38            android:value="@integer/google_play_services_version" />
-38-->C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\src\main\AndroidManifest.xml:33:13-66
+38-->C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\src\main\AndroidManifest.xml:33:13-66
 39
 40        <!--
 41          Optional: Add it to automatically download ML model to device after
 42          your app is installed.
 43        -->
 44        <meta-data
-44-->C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\src\main\AndroidManifest.xml:37:9-39:51
+44-->C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\src\main\AndroidManifest.xml:37:9-39:51
 45            android:name="com.google.mlkit.vision.DEPENDENCIES"
-45-->C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\src\main\AndroidManifest.xml:38:13-64
+45-->C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\src\main\AndroidManifest.xml:38:13-64
 46            android:value="barcode,face,ocr,ica" />
-46-->C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\src\main\AndroidManifest.xml:39:13-49
+46-->C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\src\main\AndroidManifest.xml:39:13-49
 47
 48        <activity
-48-->C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\src\main\AndroidManifest.xml:41:9-49:20
+48-->C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\src\main\AndroidManifest.xml:41:9-49:20
 49            android:name="com.google.mlkit.vision.demo.java.LivePreviewActivity"
-49-->C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\src\main\AndroidManifest.xml:42:13-53
+49-->C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\src\main\AndroidManifest.xml:42:13-53
 50            android:exported="true"
-50-->C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\src\main\AndroidManifest.xml:43:13-36
+50-->C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\src\main\AndroidManifest.xml:43:13-36
 51            android:theme="@style/AppTheme" >
-51-->C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\src\main\AndroidManifest.xml:44:13-44
+51-->C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\src\main\AndroidManifest.xml:44:13-44
 52            <intent-filter>
-52-->C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\src\main\AndroidManifest.xml:45:13-48:29
+52-->C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\src\main\AndroidManifest.xml:45:13-48:29
 53                <action android:name="android.intent.action.MAIN" />
-53-->C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\src\main\AndroidManifest.xml:46:17-68
-53-->C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\src\main\AndroidManifest.xml:46:25-66
+53-->C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\src\main\AndroidManifest.xml:46:17-68
+53-->C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\src\main\AndroidManifest.xml:46:25-66
 54
 55                <category android:name="android.intent.category.LAUNCHER" />
-55-->C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\src\main\AndroidManifest.xml:47:17-76
-55-->C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\src\main\AndroidManifest.xml:47:27-74
+55-->C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\src\main\AndroidManifest.xml:47:17-76
+55-->C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\src\main\AndroidManifest.xml:47:27-74
 56            </intent-filter>
 57        </activity>
 58        <activity
-58-->C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\src\main\AndroidManifest.xml:52:9-54:39
+58-->C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\src\main\AndroidManifest.xml:52:9-54:39
 59            android:name="com.google.mlkit.vision.demo.preference.SettingsActivity"
-59-->C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\src\main\AndroidManifest.xml:53:13-56
+59-->C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\src\main\AndroidManifest.xml:53:13-56
 60            android:exported="false" />
-60-->C:\Users\GaYeon\Desktop\mlkit-master\android\vision-quickstart\app\src\main\AndroidManifest.xml:54:13-37
+60-->C:\Users\GaYeon\AndroidStudioProjects\Final_Model\app\src\main\AndroidManifest.xml:54:13-37
 61
 62        <service
 62-->[com.google.mlkit:object-detection:16.2.3] C:\Users\GaYeon\.gradle\caches\transforms-2\files-2.1\e94b3b732e43a1e97f02096d538044c3\jetified-object-detection-16.2.3\AndroidManifest.xml:8:9-14:19
