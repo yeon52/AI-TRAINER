@@ -170,20 +170,38 @@ public class PoseGraphic extends Graphic {
     boolean pushup = false;
 
     if (squat) {
-      //무릎이 발밖으로 많이 나올경우
-      if (leftKnee.getPosition().x + 20 < leftFootIndex.getPosition().x || rightKnee.getPosition().x + 20 < rightFootIndex.getPosition().x) {
-        canvas.drawText("무릎을 넣어주세요",
-                translateX(150),
-                translateY(150),
-                whitePaint);
-      } 
-      //무릎과 엉덩이의 각도가 90도보다 작아지게 제대로 앉지 않았을 경우
-      else if(leftKnee.getPosition().y > leftHip.getPosition().y || rightKnee.getPosition().y > rightHip.getPosition().y) {
+      if (leftHeel.getPosition().x > leftFootIndex.getPosition().x){ // 왼쪽을 보고있을 떼
+        //무릎이 발밖으로 많이 나올경우
+        if (leftKnee.getPosition().x+20 < leftFootIndex.getPosition().x || rightKnee.getPosition().x + 20 < rightFootIndex.getPosition().x) {
+          canvas.drawText("무릎을 넣어주세요",
+                  translateX(150),
+                  translateY(150),
+                  whitePaint);
+        }
+        //무릎과 엉덩이의 각도가 90도보다 작아지게 제대로 앉지 않았을 경우
+        else if(leftKnee.getPosition().y > leftHip.getPosition().y || rightKnee.getPosition().y > rightHip.getPosition().y) {
           canvas.drawText("더 앉아주세요",
                   translateX(150),
                   translateY(150),
                   whitePaint);
         }
+      }
+      else { //오른쪽 보고 있을 때
+        //무릎이 발밖으로 많이 나올경우
+        if (leftKnee.getPosition().x > leftFootIndex.getPosition().x + 20 || rightKnee.getPosition().x > rightFootIndex.getPosition().x + 20) {
+          canvas.drawText("무릎을 넣어주세요",
+                  translateX(150),
+                  translateY(150),
+                  whitePaint);
+        }
+        //무릎과 엉덩이의 각도가 90도보다 작아지게 제대로 앉지 않았을 경우
+        else if (leftKnee.getPosition().y > leftHip.getPosition().y || rightKnee.getPosition().y > rightHip.getPosition().y) {
+          canvas.drawText("더 앉아주세요",
+                  translateX(150),
+                  translateY(150),
+                  whitePaint);
+        }
+      }
     }
 
     if(lunge) {
