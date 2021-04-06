@@ -1,7 +1,7 @@
 # compiler: R8
 # compiler_version: 2.1.75
 # min_api: 16
-# pg_map_id: b981fc8
+# pg_map_id: 5b449e2
 # common_typos_disable
 $r8$backportedMethods$utility$Objects$2$equals -> a:
     boolean equals(java.lang.Object,java.lang.Object) -> a
@@ -47828,11 +47828,7 @@ com.google.mlkit.vision.demo.GraphicOverlay$Graphic -> com.google.mlkit.vision.d
     float translateX(float) -> e
     float translateY(float) -> f
 com.google.mlkit.vision.demo.InferenceInfoGraphic -> com.google.mlkit.vision.demo.g:
-    java.lang.Integer framesPerSecond -> f
-    long detectorLatency -> e
     android.graphics.Paint textPaint -> b
-    long frameLatency -> d
-    com.google.mlkit.vision.demo.GraphicOverlay overlay -> c
     void draw(android.graphics.Canvas) -> a
 com.google.mlkit.vision.demo.ScopedExecutor -> com.google.mlkit.vision.demo.h:
     java.util.concurrent.atomic.AtomicBoolean shutdown -> c
@@ -47933,20 +47929,21 @@ com.google.mlkit.vision.demo.java.posedetector.PoseDetectorProcessor$PoseWithCla
     com.google.mlkit.vision.pose.Pose access$000(com.google.mlkit.vision.demo.java.posedetector.PoseDetectorProcessor$PoseWithClassification) -> a
     java.util.List access$100(com.google.mlkit.vision.demo.java.posedetector.PoseDetectorProcessor$PoseWithClassification) -> b
 com.google.mlkit.vision.demo.java.posedetector.PoseGraphic -> com.google.mlkit.vision.demo.java.f.c:
-    android.graphics.Paint leftPaint -> j
-    android.graphics.Paint classificationTextPaint -> i
+    int TEXT_COLOR -> m
     com.google.mlkit.vision.pose.Pose pose -> b
     float zMax -> g
     float zMin -> f
+    android.graphics.Paint whitePaint -> l
+    android.graphics.Paint rightPaint -> k
+    android.graphics.Paint leftPaint -> j
+    android.graphics.Paint classificationTextPaint -> i
     boolean rescaleZForVisualization -> e
     java.util.List poseClassification -> h
+    float TEXT_SIZE -> n
     boolean showInFrameLikelihood -> c
-    android.graphics.Paint whitePaint -> l
     boolean visualizeZ -> d
-    android.graphics.Paint rightPaint -> k
     void draw(android.graphics.Canvas) -> a
     void drawLine(android.graphics.Canvas,com.google.mlkit.vision.pose.PoseLandmark,com.google.mlkit.vision.pose.PoseLandmark,android.graphics.Paint) -> g
-    void drawPoint(android.graphics.Canvas,com.google.mlkit.vision.pose.PoseLandmark,android.graphics.Paint) -> h
 com.google.mlkit.vision.demo.java.posedetector.classification.-$$Lambda$ClassificationResult$zezWXqhENuCwSDdsYaQmdHovasw -> com.google.mlkit.vision.demo.java.f.d.a:
     com.google.mlkit.vision.demo.java.posedetector.classification.-$$Lambda$ClassificationResult$zezWXqhENuCwSDdsYaQmdHovasw INSTANCE -> a
 com.google.mlkit.vision.demo.java.posedetector.classification.-$$Lambda$PoseClassifier$0hl4pSR6T8_n9ggM1ciud4oIi-g -> com.google.mlkit.vision.demo.java.f.d.b:

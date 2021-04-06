@@ -70,6 +70,7 @@ public final class LivePreviewActivity extends AppCompatActivity
     super.onCreate(savedInstanceState);
     Log.d(TAG, "onCreate");
 
+
     setContentView(R.layout.activity_vision_live_preview);
 
     preview = findViewById(R.id.preview_view);

@@ -53,8 +53,6 @@ com/google/mlkit/vision/demo/CameraSource.java
  com.google.mlkit.vision.demo.CameraSource$CameraPreviewCallback
  com.google.mlkit.vision.demo.CameraSource$FrameProcessingRunnable
  com.google.mlkit.vision.demo.CameraSource$SizePair
-com/google/mlkit/vision/demo/java/LivePreviewActivity.java
- com.google.mlkit.vision.demo.java.LivePreviewActivity
 com/google/mlkit/vision/demo/java/posedetector/classification/PoseSample.java
  com.google.mlkit.vision.demo.java.posedetector.classification.PoseSample
 com/google/mlkit/vision/demo/java/posedetector/PoseGraphic.java
@@ -62,3 +60,5 @@ com/google/mlkit/vision/demo/java/posedetector/PoseGraphic.java
 com/google/mlkit/vision/demo/java/posedetector/PoseDetectorProcessor.java
  com.google.mlkit.vision.demo.java.posedetector.PoseDetectorProcessor
  com.google.mlkit.vision.demo.java.posedetector.PoseDetectorProcessor$PoseWithClassification
+com/google/mlkit/vision/demo/java/LivePreviewActivity.java
+ com.google.mlkit.vision.demo.java.LivePreviewActivity
