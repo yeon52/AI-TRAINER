@@ -18,6 +18,8 @@ package com.google.mlkit.vision.demo.java.posedetector;
 
 import android.content.Context;
 import androidx.annotation.NonNull;
+
+import android.graphics.Color;
 import android.util.Log;
 import com.google.android.gms.tasks.Task;
 import com.google.mlkit.vision.common.InputImage;

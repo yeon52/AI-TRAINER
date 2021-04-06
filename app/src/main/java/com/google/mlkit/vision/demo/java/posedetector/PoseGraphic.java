@@ -54,14 +54,16 @@ public class PoseGraphic extends Graphic {
   private final Paint leftPaint;
   private final Paint rightPaint;
   private final Paint whitePaint;
-
+  private static int TEXT_COLOR = Color.WHITE;
+  private static float TEXT_SIZE = 60.0f;
   PoseGraphic(
       GraphicOverlay overlay,
       Pose pose,
       boolean showInFrameLikelihood,
       boolean visualizeZ,
       boolean rescaleZForVisualization,
-      List<String> poseClassification) {
+      List<String> poseClassification
+      ) {
     super(overlay);
     this.pose = pose;
     this.showInFrameLikelihood = showInFrameLikelihood;
@@ -104,15 +106,6 @@ public class PoseGraphic extends Graphic {
           classificationTextPaint);
     }
 
-    // Draw all the points
-    for (PoseLandmark landmark : landmarks) {
-      drawPoint(canvas, landmark, whitePaint);
-      if (visualizeZ && rescaleZForVisualization) {
-        zMin = min(zMin, landmark.getPosition3D().getZ());
-        zMax = max(zMax, landmark.getPosition3D().getZ());
-      }
-    }
-
     PoseLandmark leftShoulder = pose.getPoseLandmark(PoseLandmark.LEFT_SHOULDER);
     PoseLandmark rightShoulder = pose.getPoseLandmark(PoseLandmark.RIGHT_SHOULDER);
     PoseLandmark leftElbow = pose.getPoseLandmark(PoseLandmark.LEFT_ELBOW);
@@ -137,73 +130,117 @@ public class PoseGraphic extends Graphic {
     PoseLandmark leftFootIndex = pose.getPoseLandmark(PoseLandmark.LEFT_FOOT_INDEX);
     PoseLandmark rightFootIndex = pose.getPoseLandmark(PoseLandmark.RIGHT_FOOT_INDEX);
 
-    drawLine(canvas, leftShoulder, rightShoulder, whitePaint);
-    drawLine(canvas, leftHip, rightHip, whitePaint);
 
-    // Left body
-    drawLine(canvas, leftShoulder, leftElbow, leftPaint);
-    drawLine(canvas, leftElbow, leftWrist, leftPaint);
-    drawLine(canvas, leftShoulder, leftHip, leftPaint);
-    drawLine(canvas, leftHip, leftKnee, leftPaint);
-    drawLine(canvas, leftKnee, leftAnkle, leftPaint);
-    drawLine(canvas, leftWrist, leftThumb, leftPaint);
-    drawLine(canvas, leftWrist, leftPinky, leftPaint);
-    drawLine(canvas, leftWrist, leftIndex, leftPaint);
-    drawLine(canvas, leftIndex, leftPinky, leftPaint);
-    drawLine(canvas, leftAnkle, leftHeel, leftPaint);
-    drawLine(canvas, leftHeel, leftFootIndex, leftPaint);
+    if (leftHeel.getPosition().x > leftFootIndex.getPosition().x && rightHeel.getPosition().x > rightFootIndex.getPosition().x){ //왼쪽볼때
+//      // Draw all the points
+//      for (PoseLandmark landmark : landmarks) {
+//        drawPoint(canvas, landmark, whitePaint);
+//        if (visualizeZ && rescaleZForVisualization) {
+//          zMin = min(zMin, landmark.getPosition3D().getZ());
+//          zMax = max(zMax, landmark.getPosition3D().getZ());
+//        }
+//      }
+      // Left body
+      drawLine(canvas, leftShoulder, leftElbow, leftPaint);
+      drawLine(canvas, leftElbow, leftWrist, leftPaint);
+      drawLine(canvas, leftShoulder, leftHip, leftPaint);
+      drawLine(canvas, leftHip, leftKnee, leftPaint);
+      drawLine(canvas, leftKnee, leftAnkle, leftPaint);
+      drawLine(canvas, leftWrist, leftThumb, leftPaint);
+      drawLine(canvas, leftWrist, leftPinky, leftPaint);
+      drawLine(canvas, leftWrist, leftIndex, leftPaint);
+      drawLine(canvas, leftIndex, leftPinky, leftPaint);
+      drawLine(canvas, leftAnkle, leftHeel, leftPaint);
+      drawLine(canvas, leftHeel, leftFootIndex, leftPaint);
+    }
+    else if (leftHeel.getPosition().x < leftFootIndex.getPosition().x && rightHeel.getPosition().x < rightFootIndex.getPosition().x){ //오른쪽
+      // Right body
+      drawLine(canvas, rightShoulder, rightElbow, rightPaint);
+      drawLine(canvas, rightElbow, rightWrist, rightPaint);
+      drawLine(canvas, rightShoulder, rightHip, rightPaint);
+      drawLine(canvas, rightHip, rightKnee, rightPaint);
+      drawLine(canvas, rightKnee, rightAnkle, rightPaint);
+      drawLine(canvas, rightWrist, rightThumb, rightPaint);
+      drawLine(canvas, rightWrist, rightPinky, rightPaint);
+      drawLine(canvas, rightWrist, rightIndex, rightPaint);
+      drawLine(canvas, rightIndex, rightPinky, rightPaint);
+      drawLine(canvas, rightAnkle, rightHeel, rightPaint);
+      drawLine(canvas, rightHeel, rightFootIndex, rightPaint);
+    }
+    else{
+      drawLine(canvas, leftShoulder, rightShoulder, whitePaint);
+      drawLine(canvas, leftHip, rightHip, whitePaint);
 
-    // Right body
-    drawLine(canvas, rightShoulder, rightElbow, rightPaint);
-    drawLine(canvas, rightElbow, rightWrist, rightPaint);
-    drawLine(canvas, rightShoulder, rightHip, rightPaint);
-    drawLine(canvas, rightHip, rightKnee, rightPaint);
-    drawLine(canvas, rightKnee, rightAnkle, rightPaint);
-    drawLine(canvas, rightWrist, rightThumb, rightPaint);
-    drawLine(canvas, rightWrist, rightPinky, rightPaint);
-    drawLine(canvas, rightWrist, rightIndex, rightPaint);
-    drawLine(canvas, rightIndex, rightPinky, rightPaint);
-    drawLine(canvas, rightAnkle, rightHeel, rightPaint);
-    drawLine(canvas, rightHeel, rightFootIndex, rightPaint);
+      drawLine(canvas, leftShoulder, leftElbow, leftPaint);
+      drawLine(canvas, leftElbow, leftWrist, leftPaint);
+      drawLine(canvas, leftShoulder, leftHip, leftPaint);
+      drawLine(canvas, leftHip, leftKnee, leftPaint);
+      drawLine(canvas, leftKnee, leftAnkle, leftPaint);
+      drawLine(canvas, leftWrist, leftThumb, leftPaint);
+      drawLine(canvas, leftWrist, leftPinky, leftPaint);
+      drawLine(canvas, leftWrist, leftIndex, leftPaint);
+      drawLine(canvas, leftIndex, leftPinky, leftPaint);
+      drawLine(canvas, leftAnkle, leftHeel, leftPaint);
+      drawLine(canvas, leftHeel, leftFootIndex, leftPaint);
+      drawLine(canvas, rightShoulder, rightElbow, rightPaint);
+      drawLine(canvas, rightElbow, rightWrist, rightPaint);
+      drawLine(canvas, rightShoulder, rightHip, rightPaint);
+      drawLine(canvas, rightHip, rightKnee, rightPaint);
+      drawLine(canvas, rightKnee, rightAnkle, rightPaint);
+      drawLine(canvas, rightWrist, rightThumb, rightPaint);
+      drawLine(canvas, rightWrist, rightPinky, rightPaint);
+      drawLine(canvas, rightWrist, rightIndex, rightPaint);
+      drawLine(canvas, rightIndex, rightPinky, rightPaint);
+      drawLine(canvas, rightAnkle, rightHeel, rightPaint);
+      drawLine(canvas, rightHeel, rightFootIndex, rightPaint);
+    }
+
 
     boolean squat = true; //나중에 선택사항 만들어서 선택됐을 때 true로 변경
     boolean lunge = false;
     boolean situp = false;
     boolean pushup = false;
+<<<<<<< HEAD
 
     printAngle(pose, canvas);
 
+=======
+    Paint textPaint = new Paint();
+    textPaint.setColor(TEXT_COLOR);
+    textPaint.setTextSize(TEXT_SIZE);
+>>>>>>> 1c24bfb2558b5d89faab5394bb4002bac2f704d8
     if (squat) {
       if (leftHeel.getPosition().x > leftFootIndex.getPosition().x){ // 왼쪽을 보고있을 떼
         //무릎이 발밖으로 많이 나올경우
-        if (leftKnee.getPosition().x+20 < leftFootIndex.getPosition().x || rightKnee.getPosition().x + 20 < rightFootIndex.getPosition().x) {
+
+        if (leftKnee.getPosition().x+40 < leftFootIndex.getPosition().x || rightKnee.getPosition().x + 40 < rightFootIndex.getPosition().x) {
           canvas.drawText("무릎을 넣어주세요",
                   translateX(150),
                   translateY(150),
-                  whitePaint);
+                  textPaint);
         }
         //무릎과 엉덩이의 각도가 90도보다 작아지게 제대로 앉지 않았을 경우
-        else if(leftKnee.getPosition().y > leftHip.getPosition().y || rightKnee.getPosition().y > rightHip.getPosition().y) {
+        else if(leftKnee.getPosition().y > leftHip.getPosition().y+50 || rightKnee.getPosition().y > rightHip.getPosition().y) {
           canvas.drawText("더 앉아주세요",
                   translateX(150),
                   translateY(150),
-                  whitePaint);
+                  textPaint);
         }
       }
       else { //오른쪽 보고 있을 때
         //무릎이 발밖으로 많이 나올경우
-        if (leftKnee.getPosition().x > leftFootIndex.getPosition().x + 20 || rightKnee.getPosition().x > rightFootIndex.getPosition().x + 20) {
+        if (leftKnee.getPosition().x > leftFootIndex.getPosition().x + 40 || rightKnee.getPosition().x > rightFootIndex.getPosition().x + 40) {
           canvas.drawText("무릎을 넣어주세요",
                   translateX(150),
                   translateY(150),
-                  whitePaint);
+                  textPaint);
         }
         //무릎과 엉덩이의 각도가 90도보다 작아지게 제대로 앉지 않았을 경우
-        else if (leftKnee.getPosition().y > leftHip.getPosition().y || rightKnee.getPosition().y > rightHip.getPosition().y) {
+        else if (leftKnee.getPosition().y > leftHip.getPosition().y+50 || rightKnee.getPosition().y > rightHip.getPosition().y) {
           canvas.drawText("더 앉아주세요",
                   translateX(150),
                   translateY(150),
-                  whitePaint);
+                  textPaint);
         }
       }
     }
@@ -214,7 +251,7 @@ public class PoseGraphic extends Graphic {
         canvas.drawText("상체를 똑바로 세워주세요 ",
                 translateX(150),
                 translateY(150),
-                whitePaint);
+                textPaint);
       }
 
       //무릎이 발밖으로 많이 나올경우
@@ -222,7 +259,7 @@ public class PoseGraphic extends Graphic {
         canvas.drawText("무릎을 넣어주세요",
                 translateX(150),
                 translateY(150),
-                whitePaint);
+                textPaint);
       }
 
       // 뒷발의 무릎이 지면에 거의 닿을정도로 앉아야한다.
@@ -233,14 +270,14 @@ public class PoseGraphic extends Graphic {
             canvas.drawText("더 내려가주세요",
                     translateX(150),
                     translateY(150),
-                    whitePaint);
+                    textPaint);
           }
         } else { // 오른발이 앞에 있을 때
           if (leftHeel.getPosition().y > leftKnee.getPosition().y) {
             canvas.drawText("더 내려가주세요",
                     translateX(150),
                     translateY(150),
-                    whitePaint);
+                    textPaint);
           }
         }
       }
@@ -248,36 +285,36 @@ public class PoseGraphic extends Graphic {
 
     if(situp){
       //팔꿈치가 무릎에 닿을 정도로 올라와야함
-      if(Math.abs(leftElbow.getPosition().x - leftKnee.getPosition().x) > 10 || Math.abs(rightElbow.getPosition().x - rightKnee.getPosition().x) > 10){
+      if(Math.abs(leftElbow.getPosition().x - leftKnee.getPosition().x) > 30 || Math.abs(rightElbow.getPosition().x - rightKnee.getPosition().x) > 30){
         canvas.drawText("더 올라와주세요",
                 translateX(150),
                 translateY(150),
-                whitePaint);
+                textPaint);
       }
       //발이 바닥과 떨어지지 않게 한다
-      else if(Math.abs(leftHeel.getPosition().y - leftHip.getPosition().y)>10 || Math.abs(rightHeel.getPosition().y - rightHip.getPosition().y)>10){
+      else if(Math.abs(leftHeel.getPosition().y - leftHip.getPosition().y)>30 || Math.abs(rightHeel.getPosition().y - rightHip.getPosition().y)>30){
         canvas.drawText("발을 땅에 붙여주세요",
                 translateX(150),
                 translateY(150),
-                whitePaint);
+                textPaint);
       }
     }
 
     if(pushup){
       //내려 갔을 때 몸이 일자가 되어야함 (엉덩이가 내려가거나 올라가면 안됨)
-      if(Math.abs(leftShoulder.getPosition().y - leftHip.getPosition().y) > 10 || Math.abs(rightShoulder.getPosition().y - rightHip.getPosition().y) > 10){
+      if(Math.abs(leftShoulder.getPosition().y - leftHip.getPosition().y) > 30 || Math.abs(rightShoulder.getPosition().y - rightHip.getPosition().y) > 30){
         canvas.drawText("몸을 일자로 곧게 펴주세요",
                 translateX(150),
                 translateY(150),
-                whitePaint);
+                textPaint);
       }
 
       // 몸이 바닥에 닫기 직전까지 내려야 한다.
-      else if(Math.abs(leftShoulder.getPosition().y - leftWrist.getPosition().y) > 10 || Math.abs(rightShoulder.getPosition().y - rightWrist.getPosition().y) > 10){
+      else if(Math.abs(leftShoulder.getPosition().y - leftWrist.getPosition().y) > 30 || Math.abs(rightShoulder.getPosition().y - rightWrist.getPosition().y) > 30){
         canvas.drawText("더 내려가주세요",
                 translateX(150),
                 translateY(150),
-                whitePaint);
+                textPaint);
       }
     }
 
@@ -297,6 +334,7 @@ public class PoseGraphic extends Graphic {
 
   void drawPoint(Canvas canvas, PoseLandmark landmark, Paint paint) {
     PointF point = landmark.getPosition();
+    canvas.drawCircle(translateX(point.x), translateY(point.y), DOT_RADIUS, paint);
     canvas.drawCircle(translateX(point.x), translateY(point.y), DOT_RADIUS, paint);
   }
 
