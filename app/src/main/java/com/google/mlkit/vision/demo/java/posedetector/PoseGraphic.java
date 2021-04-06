@@ -16,6 +16,7 @@
 
 package com.google.mlkit.vision.demo.java.posedetector;
 
+import static java.lang.Math.atan2;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 
@@ -27,6 +28,7 @@ import com.google.common.primitives.Ints;
 import com.google.mlkit.vision.common.PointF3D;
 import com.google.mlkit.vision.demo.GraphicOverlay;
 import com.google.mlkit.vision.demo.GraphicOverlay.Graphic;
+import com.google.mlkit.vision.demo.InferenceInfoGraphic;
 import com.google.mlkit.vision.pose.Pose;
 import com.google.mlkit.vision.pose.PoseLandmark;
 import java.util.List;
@@ -168,6 +170,8 @@ public class PoseGraphic extends Graphic {
     boolean lunge = false;
     boolean situp = false;
     boolean pushup = false;
+
+    printAngle(pose, canvas);
 
     if (squat) {
       if (leftHeel.getPosition().x > leftFootIndex.getPosition().x){ // 왼쪽을 보고있을 떼
@@ -350,5 +354,83 @@ public class PoseGraphic extends Graphic {
       canvas.drawLine(
           translateX(start.x), translateY(start.y), translateX(end.x), translateY(end.y), paint);
     }
+  }
+  double getAngle(PoseLandmark firstPoint, PoseLandmark midPoint, PoseLandmark lastPoint) {
+    double result;
+    try {
+      result =
+              Math.toDegrees(
+                      atan2(lastPoint.getPosition().y - midPoint.getPosition().y,
+                              lastPoint.getPosition().x - midPoint.getPosition().x)
+                              - atan2(firstPoint.getPosition().y - midPoint.getPosition().y,
+                              firstPoint.getPosition().x - midPoint.getPosition().x));
+      result = Math.abs(result);
+      if (result > 180) {
+        result = (360.0 - result);
+      }
+    } catch (Exception e){
+      result = -1.f;
+    }
+
+    return result;
+  }
+  void printAngle(Pose pose, Canvas canvas) {
+
+    float text_size = 30.0f;
+    float x = text_size * 0.5f;
+    float y = 1200.f;
+
+    double rightHipAngle = getAngle(
+            pose.getPoseLandmark(PoseLandmark.RIGHT_SHOULDER),
+            pose.getPoseLandmark(PoseLandmark.RIGHT_HIP),
+            pose.getPoseLandmark(PoseLandmark.RIGHT_KNEE));
+    double leftHipAngle = getAngle(
+            pose.getPoseLandmark(PoseLandmark.LEFT_SHOULDER),
+            pose.getPoseLandmark(PoseLandmark.LEFT_HIP),
+            pose.getPoseLandmark(PoseLandmark.LEFT_KNEE));
+    double rightKneeAngle = getAngle(
+            pose.getPoseLandmark(PoseLandmark.RIGHT_HIP),
+            pose.getPoseLandmark(PoseLandmark.RIGHT_KNEE),
+            pose.getPoseLandmark(PoseLandmark.RIGHT_ANKLE));
+    double leftKneeAngle = getAngle(
+            pose.getPoseLandmark(PoseLandmark.LEFT_HIP),
+            pose.getPoseLandmark(PoseLandmark.LEFT_KNEE),
+            pose.getPoseLandmark(PoseLandmark.LEFT_ANKLE));
+    double rightShoulderAngle = getAngle(
+            pose.getPoseLandmark(PoseLandmark.RIGHT_ELBOW),
+            pose.getPoseLandmark(PoseLandmark.RIGHT_SHOULDER),
+            pose.getPoseLandmark(PoseLandmark.RIGHT_HIP));
+    double leftShoulderAngle = getAngle(
+            pose.getPoseLandmark(PoseLandmark.LEFT_ELBOW),
+            pose.getPoseLandmark(PoseLandmark.LEFT_SHOULDER),
+            pose.getPoseLandmark(PoseLandmark.LEFT_HIP));
+    double rightElbowAngle = getAngle(
+            pose.getPoseLandmark(PoseLandmark.RIGHT_WRIST),
+            pose.getPoseLandmark(PoseLandmark.RIGHT_ELBOW),
+            pose.getPoseLandmark(PoseLandmark.RIGHT_SHOULDER));
+    double leftElbowAngle = getAngle(
+            pose.getPoseLandmark(PoseLandmark.LEFT_WRIST),
+            pose.getPoseLandmark(PoseLandmark.LEFT_ELBOW),
+            pose.getPoseLandmark(PoseLandmark.LEFT_SHOULDER));
+    double rightAnkleAngle = getAngle(
+            pose.getPoseLandmark(PoseLandmark.RIGHT_KNEE),
+            pose.getPoseLandmark(PoseLandmark.RIGHT_ANKLE),
+            pose.getPoseLandmark(PoseLandmark.RIGHT_FOOT_INDEX));
+    double leftAnkleAngle = getAngle(
+            pose.getPoseLandmark(PoseLandmark.LEFT_KNEE),
+            pose.getPoseLandmark(PoseLandmark.LEFT_ANKLE),
+            pose.getPoseLandmark(PoseLandmark.LEFT_FOOT_INDEX));
+    canvas.drawText("leftShoulder: " + leftShoulderAngle, x, y + text_size * 0, whitePaint);
+    canvas.drawText("rightShoulder: " + rightShoulderAngle, x, y  + text_size * 1, whitePaint);
+    canvas.drawText("leftElbow: " + leftElbowAngle, x, y + text_size * 2, whitePaint);
+    canvas.drawText("rightElbow: " + rightElbowAngle, x, y  + text_size * 3, whitePaint);
+    canvas.drawText("leftHip: " + leftHipAngle, x, y + text_size * 4, whitePaint);
+    canvas.drawText("rightHip: " + rightHipAngle, x, y + text_size * 5, whitePaint);
+    canvas.drawText("leftKnee: " + leftKneeAngle, x, y + text_size * 6, whitePaint);
+    canvas.drawText("rightKnee: " + rightKneeAngle, x, y + text_size * 7, whitePaint);
+    canvas.drawText("leftAnkle: " + leftAnkleAngle, x, y + text_size * 8, whitePaint);
+    canvas.drawText("rightAnkle: " + rightAnkleAngle, x, y + text_size * 9, whitePaint);
+
+
   }
 }
