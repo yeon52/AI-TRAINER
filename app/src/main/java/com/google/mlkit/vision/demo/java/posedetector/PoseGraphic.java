@@ -204,9 +204,23 @@ public class PoseGraphic extends Graphic {
       }
 
       // 뒷발의 무릎이 지면에 거의 닿을정도로 앉아야한다.
-
-
-
+      // 앞발 뒷발 구분
+      if(leftFootIndex.getPosition().x < rightFootIndex.getPosition().x){ //왼발이 앞에 있을 때
+        if(rightHeel.getPosition().y>rightKnee.getPosition().y){
+          canvas.drawText("더 내려가주세요",
+                  translateX(150),
+                  translateY(150),
+                  whitePaint);
+        }
+      }
+      else{ // 오른발이 앞에 있을 때
+        if(leftHeel.getPosition().y>leftKnee.getPosition().y){
+          canvas.drawText("더 내려가주세요",
+                  translateX(150),
+                  translateY(150),
+                  whitePaint);
+        }
+      }
     }
 
     if(situp){
