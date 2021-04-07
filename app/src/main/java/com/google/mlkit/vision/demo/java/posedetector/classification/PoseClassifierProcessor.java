@@ -124,23 +124,11 @@ public class PoseClassifierProcessor {
           ToneGenerator tg = new ToneGenerator(AudioManager.STREAM_NOTIFICATION, 100);
           tg.startTone(ToneGenerator.TONE_PROP_BEEP);
           lastRepResult = String.format(
-              Locale.US, "%s : %d reps", repCounter.getClassName(), repsAfter);
+              Locale.US, "횟수 : %d 회", repsAfter);
           break;
         }
       }
       result.add(lastRepResult);
-    }
-
-    // Add maxConfidence class of current frame to result if pose is found.
-    if (!pose.getAllPoseLandmarks().isEmpty()) {
-      String maxConfidenceClass = classification.getMaxConfidenceClass();
-      String maxConfidenceClassResult = String.format(
-          Locale.US,
-          "%s : %.2f confidence",
-          maxConfidenceClass,
-          classification.getClassConfidence(maxConfidenceClass)
-              / poseClassifier.confidenceRange());
-      result.add(maxConfidenceClassResult);
     }
 
     return result;

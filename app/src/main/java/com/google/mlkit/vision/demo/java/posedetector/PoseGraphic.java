@@ -56,6 +56,8 @@ public class PoseGraphic extends Graphic {
   private final Paint whitePaint;
   private static int TEXT_COLOR = Color.WHITE;
   private static float TEXT_SIZE = 60.0f;
+  static int chk_squat = 0;
+  static int chk_pushup = 0;
   PoseGraphic(
       GraphicOverlay overlay,
       Pose pose,
@@ -200,50 +202,58 @@ public class PoseGraphic extends Graphic {
     boolean lunge = false;
     boolean situp = false;
     boolean pushup = false;
-<<<<<<< HEAD
-
     printAngle(pose, canvas);
 
-=======
     Paint textPaint = new Paint();
     textPaint.setColor(TEXT_COLOR);
     textPaint.setTextSize(TEXT_SIZE);
->>>>>>> 1c24bfb2558b5d89faab5394bb4002bac2f704d8
+
     if (squat) {
+      if(Math.abs(leftHip.getPosition().x - leftKnee.getPosition().x) < 30){ //서있을 때
+        chk_squat = 0;
+      }
       if (leftHeel.getPosition().x > leftFootIndex.getPosition().x){ // 왼쪽을 보고있을 떼
         //무릎이 발밖으로 많이 나올경우
 
-        if (leftKnee.getPosition().x+40 < leftFootIndex.getPosition().x || rightKnee.getPosition().x + 40 < rightFootIndex.getPosition().x) {
+        if (leftKnee.getPosition().x < leftFootIndex.getPosition().x || rightKnee.getPosition().x < rightFootIndex.getPosition().x) {
           canvas.drawText("무릎을 넣어주세요",
                   translateX(150),
                   translateY(150),
                   textPaint);
         }
-        //무릎과 엉덩이의 각도가 90도보다 작아지게 제대로 앉지 않았을 경우
-        else if(leftKnee.getPosition().y > leftHip.getPosition().y+50 || rightKnee.getPosition().y > rightHip.getPosition().y) {
+
+        //서있지 않으면서 무릎과 엉덩이의 각도가 90도보다 작아지게 제대로 앉지 않았을 경우
+        else if(chk_squat < 7 && Math.abs(leftHip.getPosition().x - leftKnee.getPosition().x) > 30 && (leftKnee.getPosition().y - leftHip.getPosition().y > 0 &&  leftKnee.getPosition().y - leftHip.getPosition().y <=45 )){
           canvas.drawText("더 앉아주세요",
                   translateX(150),
                   translateY(150),
                   textPaint);
+          chk_squat++;
         }
+
       }
       else { //오른쪽 보고 있을 때
         //무릎이 발밖으로 많이 나올경우
+        if(Math.abs(rightHip.getPosition().x - rightKnee.getPosition().x) < 30){ //서있을 때
+          chk_squat = 0;
+        }
         if (leftKnee.getPosition().x > leftFootIndex.getPosition().x + 40 || rightKnee.getPosition().x > rightFootIndex.getPosition().x + 40) {
           canvas.drawText("무릎을 넣어주세요",
                   translateX(150),
                   translateY(150),
                   textPaint);
         }
-        //무릎과 엉덩이의 각도가 90도보다 작아지게 제대로 앉지 않았을 경우
-        else if (leftKnee.getPosition().y > leftHip.getPosition().y+50 || rightKnee.getPosition().y > rightHip.getPosition().y) {
+        // 서있지 않으면서 무릎과 엉덩이의 각도가 90도보다 작아지게 제대로 앉지 않았을 경우
+        else if (chk_squat < 7 && Math.abs(rightHip.getPosition().x - rightKnee.getPosition().x) > 30 && (rightKnee.getPosition().y - rightHip.getPosition().y > 0 &&  rightKnee.getPosition().y - rightHip.getPosition().y <=45)) {
           canvas.drawText("더 앉아주세요",
                   translateX(150),
                   translateY(150),
                   textPaint);
+          chk_squat++;
         }
       }
     }
+
 
     if(lunge) {
       //상체가 기울어질 경우
@@ -300,26 +310,31 @@ public class PoseGraphic extends Graphic {
       }
     }
 
-    if(pushup){
+    if(pushup) {
+      if (Math.abs(leftShoulder.getPosition().x - leftElbow.getPosition().x) < 30) { //올라와있을 때
+        chk_pushup = 0;
+      }
       //내려 갔을 때 몸이 일자가 되어야함 (엉덩이가 내려가거나 올라가면 안됨)
-      if(Math.abs(leftShoulder.getPosition().y - leftHip.getPosition().y) > 30 || Math.abs(rightShoulder.getPosition().y - rightHip.getPosition().y) > 30){
+      if (leftShoulder.getPosition().y > leftHip.getPosition().y) {
         canvas.drawText("몸을 일자로 곧게 펴주세요",
                 translateX(150),
                 translateY(150),
                 textPaint);
       }
 
+
       // 몸이 바닥에 닫기 직전까지 내려야 한다.
-      else if(Math.abs(leftShoulder.getPosition().y - leftWrist.getPosition().y) > 30 || Math.abs(rightShoulder.getPosition().y - rightWrist.getPosition().y) > 30){
+      else if (chk_pushup < 3 && ((Math.abs(leftShoulder.getPosition().y - leftWrist.getPosition().y) < 160 && Math.abs(leftShoulder.getPosition().y - leftWrist.getPosition().y) > 130))) {
         canvas.drawText("더 내려가주세요",
                 translateX(150),
                 translateY(150),
                 textPaint);
+        chk_pushup++;
       }
     }
 
-    
-    // Draw inFrameLikelihood for all points
+
+      // Draw inFrameLikelihood for all points
     if (showInFrameLikelihood) {
       for (PoseLandmark landmark : landmarks) {
         canvas.drawText(
