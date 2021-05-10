@@ -18,7 +18,9 @@ package com.google.mlkit.vision.demo;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
 import com.google.common.base.Preconditions;
@@ -235,5 +237,11 @@ public class GraphicOverlay extends View {
         graphic.draw(canvas);
       }
     }
+
+    //사각형 틀 그리기
+//    Paint paint = new Paint();
+//    paint.setColor(Color.GREEN);
+//    canvas.drawRect(300, 250, 1120, 300, paint);
+//    canvas.drawRect(300, 1950, 1120, 2000, paint);
   }
 }

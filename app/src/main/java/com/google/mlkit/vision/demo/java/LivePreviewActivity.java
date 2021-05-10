@@ -22,6 +22,8 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -47,11 +49,13 @@ import com.google.mlkit.vision.pose.PoseDetectorOptionsBase;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
+import static android.speech.tts.TextToSpeech.ERROR;
 /** Live preview demo for ML Kit APIs. */
 @KeepName
 public final class LivePreviewActivity extends AppCompatActivity
-    implements OnRequestPermissionsResultCallback,
+        implements OnRequestPermissionsResultCallback,
         OnItemSelectedListener,
         CompoundButton.OnCheckedChangeListener {
 
@@ -59,7 +63,7 @@ public final class LivePreviewActivity extends AppCompatActivity
 
   private static final String TAG = "LivePreviewActivity";
   private static final int PERMISSION_REQUESTS = 1;
-
+  public static TextToSpeech tts;
   private CameraSource cameraSource = null;
   private CameraSourcePreview preview;
   private GraphicOverlay graphicOverlay;
@@ -70,8 +74,17 @@ public final class LivePreviewActivity extends AppCompatActivity
     super.onCreate(savedInstanceState);
     Log.d(TAG, "onCreate");
 
-
     setContentView(R.layout.activity_vision_live_preview);
+
+    tts = new TextToSpeech (this,new TextToSpeech.OnInitListener(){
+      public void onInit(int status){
+        if(status!=ERROR){
+          tts.setLanguage(Locale.KOREAN);
+        }
+      }
+    });
+
+
 
     preview = findViewById(R.id.preview_view);
     if (preview == null) {
@@ -89,12 +102,12 @@ public final class LivePreviewActivity extends AppCompatActivity
 
     ImageView settingsButton = findViewById(R.id.settings_button);
     settingsButton.setOnClickListener(
-        v -> {
-          Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
-          intent.putExtra(
-              SettingsActivity.EXTRA_LAUNCH_SOURCE, SettingsActivity.LaunchSource.LIVE_PREVIEW);
-          startActivity(intent);
-        });
+            v -> {
+              Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
+              intent.putExtra(
+                      SettingsActivity.EXTRA_LAUNCH_SOURCE, SettingsActivity.LaunchSource.LIVE_PREVIEW);
+              startActivity(intent);
+            });
 
     if (allPermissionsGranted()) {
       createCameraSource(selectedModel);
@@ -102,6 +115,7 @@ public final class LivePreviewActivity extends AppCompatActivity
       getRuntimePermissions();
     }
   }
+
 
   @Override
   public synchronized void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
@@ -147,16 +161,16 @@ public final class LivePreviewActivity extends AppCompatActivity
       switch (model) {
         case POSE_DETECTION:
           PoseDetectorOptionsBase poseDetectorOptions =
-              PreferenceUtils.getPoseDetectorOptionsForLivePreview(this);
+                  PreferenceUtils.getPoseDetectorOptionsForLivePreview(this);
           Log.i(TAG, "Using Pose Detector with options " + poseDetectorOptions);
           boolean shouldShowInFrameLikelihood =
-              PreferenceUtils.shouldShowPoseDetectionInFrameLikelihoodLivePreview(this);
+                  PreferenceUtils.shouldShowPoseDetectionInFrameLikelihoodLivePreview(this);
           boolean visualizeZ = PreferenceUtils.shouldPoseDetectionVisualizeZ(this);
           boolean rescaleZ = PreferenceUtils.shouldPoseDetectionRescaleZForVisualization(this);
           boolean runClassification = PreferenceUtils.shouldPoseDetectionRunClassification(this);
           cameraSource.setMachineLearningFrameProcessor(new PoseDetectorProcessor(
-              this, poseDetectorOptions, shouldShowInFrameLikelihood, visualizeZ, rescaleZ,
-              runClassification, /* isStreamMode = */true));
+                  this, poseDetectorOptions, shouldShowInFrameLikelihood, visualizeZ, rescaleZ,
+                  runClassification, /* isStreamMode = */true));
           break;
         default:
           Log.e(TAG, "Unknown model: " + model);
@@ -167,7 +181,7 @@ public final class LivePreviewActivity extends AppCompatActivity
               getApplicationContext(),
               "Can not create image processor: " + e.getMessage(),
               Toast.LENGTH_LONG)
-          .show();
+              .show();
     }
   }
 
@@ -215,13 +229,19 @@ public final class LivePreviewActivity extends AppCompatActivity
     if (cameraSource != null) {
       cameraSource.release();
     }
+    if(tts != null){
+      tts.stop();
+      tts.shutdown();
+      tts = null;
+    }
+
   }
 
   private String[] getRequiredPermissions() {
     try {
       PackageInfo info =
-          this.getPackageManager()
-              .getPackageInfo(this.getPackageName(), PackageManager.GET_PERMISSIONS);
+              this.getPackageManager()
+                      .getPackageInfo(this.getPackageName(), PackageManager.GET_PERMISSIONS);
       String[] ps = info.requestedPermissions;
       if (ps != null && ps.length > 0) {
         return ps;
@@ -252,13 +272,13 @@ public final class LivePreviewActivity extends AppCompatActivity
 
     if (!allNeededPermissions.isEmpty()) {
       ActivityCompat.requestPermissions(
-          this, allNeededPermissions.toArray(new String[0]), PERMISSION_REQUESTS);
+              this, allNeededPermissions.toArray(new String[0]), PERMISSION_REQUESTS);
     }
   }
 
   @Override
   public void onRequestPermissionsResult(
-      int requestCode, String[] permissions, int[] grantResults) {
+          int requestCode, String[] permissions, int[] grantResults) {
     Log.i(TAG, "Permission granted!");
     if (allPermissionsGranted()) {
       createCameraSource(selectedModel);
@@ -268,7 +288,7 @@ public final class LivePreviewActivity extends AppCompatActivity
 
   private static boolean isPermissionGranted(Context context, String permission) {
     if (ContextCompat.checkSelfPermission(context, permission)
-        == PackageManager.PERMISSION_GRANTED) {
+            == PackageManager.PERMISSION_GRANTED) {
       Log.i(TAG, "Permission granted: " + permission);
       return true;
     }
