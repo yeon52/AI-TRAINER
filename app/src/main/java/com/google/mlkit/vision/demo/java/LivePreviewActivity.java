@@ -86,6 +86,14 @@ public final class LivePreviewActivity extends AppCompatActivity
 
 
 
+    tts = new TextToSpeech (this,new TextToSpeech.OnInitListener(){
+      public void onInit(int status){
+        if(status!=ERROR){
+          tts.setLanguage(Locale.KOREAN);
+        }
+      }
+    });
+
     preview = findViewById(R.id.preview_view);
     if (preview == null) {
       Log.d(TAG, "Preview is null");
