@@ -16,6 +16,7 @@
 
 package com.google.mlkit.vision.demo.java.posedetector;
 
+import static java.lang.Math.atan;
 import static java.lang.Math.atan2;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
@@ -32,6 +33,7 @@ import com.google.mlkit.vision.demo.GraphicOverlay;
 import com.google.mlkit.vision.demo.GraphicOverlay.Graphic;
 import com.google.mlkit.vision.demo.InferenceInfoGraphic;
 import com.google.mlkit.vision.demo.java.LivePreviewActivity;
+import com.google.mlkit.vision.demo.java.posedetector.classification.PoseFeedback;
 import com.google.mlkit.vision.pose.Pose;
 import com.google.mlkit.vision.pose.PoseLandmark;
 import java.util.List;
@@ -79,7 +81,6 @@ public class PoseGraphic extends Graphic {
     this.showInFrameLikelihood = showInFrameLikelihood;
     this.visualizeZ = visualizeZ;
     this.rescaleZForVisualization = rescaleZForVisualization;
-
     this.poseClassification = poseClassification;
     classificationTextPaint = new Paint();
     classificationTextPaint.setColor(Color.WHITE);
@@ -295,8 +296,9 @@ public class PoseGraphic extends Graphic {
 
     if(lunge) {
       //상체가 기울어질 경우
-      if (Math.abs(leftShoulder.getPosition().x - leftHip.getPosition().x) > 10 || Math.abs(rightShoulder.getPosition().x - rightHip.getPosition().x) > 10) {
-        tts1.speak("상체를 똑바로 세워주세요.",TextToSpeech.QUEUE_ADD,null);
+//      if (Math.abs(leftShoulder.getPosition().x - leftHip.getPosition().x) > 10 || Math.abs(rightShoulder.getPosition().x - rightHip.getPosition().x) > 10) {
+      if (!(80.f < centerBodyTilt && centerBodyTilt < 100.f) ) {
+      tts1.speak("상체를 똑바로 세워주세요.",TextToSpeech.QUEUE_ADD,null);
       }
 
       //무릎이 발밖으로 많이 나올경우
@@ -483,7 +485,21 @@ public class PoseGraphic extends Graphic {
 
     return result;
   }
-
+  double getTilt(PoseLandmark firstPoint, PoseLandmark secondPoint) {
+    double result;
+    try {
+      result = Math.toDegrees(
+              atan2(secondPoint.getPosition().y - firstPoint.getPosition().y,
+                      secondPoint.getPosition().x - firstPoint.getPosition().x));
+      result = Math.abs(result);
+      if (result > 180.f) {
+        result = (360.f - result);
+      }
+    } catch (Exception e) {
+      result = -1.f;
+    }
+    return result;
+  }
   double rightHipAngle;
   double leftHipAngle;
   double rightKneeAngle;
@@ -494,6 +510,10 @@ public class PoseGraphic extends Graphic {
   double leftElbowAngle;
   double rightAnkleAngle;
   double leftAnkleAngle;
+  double rightBodyTilt;
+  double leftBodyTilt;
+  double centerBodyTilt = 0.5f * rightBodyTilt + 0.5f * leftBodyTilt;
+
   void printAngle(Pose pose, Canvas canvas) {
     float text_size = 30.0f;
     float x = text_size * 0.5f;
@@ -539,6 +559,9 @@ public class PoseGraphic extends Graphic {
             pose.getPoseLandmark(PoseLandmark.LEFT_KNEE),
             pose.getPoseLandmark(PoseLandmark.LEFT_ANKLE),
             pose.getPoseLandmark(PoseLandmark.LEFT_FOOT_INDEX));
+    rightBodyTilt = getTilt(pose.getPoseLandmark(PoseLandmark.RIGHT_SHOULDER), pose.getPoseLandmark(PoseLandmark.RIGHT_HIP));
+    leftBodyTilt = getTilt(pose.getPoseLandmark(PoseLandmark.LEFT_SHOULDER), pose.getPoseLandmark(PoseLandmark.LEFT_HIP));
+
     canvas.drawText("leftShoulder: " + leftShoulderAngle, x, y + text_size * 0, whitePaint);
     canvas.drawText("rightShoulder: " + rightShoulderAngle, x, y  + text_size * 1, whitePaint);
     canvas.drawText("leftElbow: " + leftElbowAngle, x, y + text_size * 2, whitePaint);
@@ -549,7 +572,7 @@ public class PoseGraphic extends Graphic {
     canvas.drawText("rightKnee: " + rightKneeAngle, x, y + text_size * 7, whitePaint);
     canvas.drawText("leftAnkle: " + leftAnkleAngle, x, y + text_size * 8, whitePaint);
     canvas.drawText("rightAnkle: " + rightAnkleAngle, x, y + text_size * 9, whitePaint);
-
-
+    canvas.drawText("rightBodyTilt: " + rightBodyTilt, x, y + text_size * 10, whitePaint);
+    canvas.drawText("leftBodyTilt: " + leftBodyTilt, x, y + text_size * 11, whitePaint);
   }
 }
