@@ -436,6 +436,11 @@ public class PoseGraphic extends Graphic {
     }
 
       if (pushup) {
+        //사각형 틀 그리기
+//      Paint paint = new Paint();
+//      paint.setColor(Color.GREEN);
+//      canvas.drawRect(250, 300, 300, 1120, paint);
+//      canvas.drawRect(2050, 300, 2100, 1120, paint);
           //canvas.drawText("minElbow: " + min_left_elbow, 100, 100, whitePaint);
           //canvas.drawText("chk_pushup: " + chk_pushup, 100, 200, whitePaint);
           //canvas.drawText("start_pushup: " + start_pushup, 100, 300, whitePaint);
