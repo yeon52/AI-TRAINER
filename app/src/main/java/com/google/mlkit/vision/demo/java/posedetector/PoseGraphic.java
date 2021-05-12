@@ -240,10 +240,10 @@ public class PoseGraphic extends Graphic {
     System.out.println();
     */
 
-    boolean squat = true; //나중에 선택사항 만들어서 선택됐을 때 true로 변경
+    boolean squat = false; //나중에 선택사항 만들어서 선택됐을 때 true로 변경
     boolean lunge = false;
     boolean situp = false;
-    boolean pushup = false;
+    boolean pushup = true;
     printAngle(pose, canvas);
 
     Paint textPaint = new Paint();
@@ -462,9 +462,11 @@ public class PoseGraphic extends Graphic {
                   }
               }
               else if(start_pushup==1 && min_left_elbow != 999){ //개수 세기
+                if(!tts1.isSpeaking()) { //현재 말하고 있는게 없다면
                   cnt_pushup++;
-                  tts1.speak(String.valueOf(cnt_pushup),TextToSpeech.QUEUE_FLUSH, null);
+                  tts1.speak(String.valueOf(cnt_pushup), TextToSpeech.QUEUE_FLUSH, null);
                   linecheck_pushup = 0; //라인체크 초기화
+                }
               }
               min_left_elbow = 999; //올라오면 각도 다시 초기화
               start_pushup = 0;
