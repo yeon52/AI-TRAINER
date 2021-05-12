@@ -63,12 +63,12 @@ public class PoseGraphic extends Graphic {
   private final Paint whitePaint;
   private static int TEXT_COLOR = Color.WHITE;
   private static float TEXT_SIZE = 60.0f;
-  static int chk_squat = 0;
+  static int cnt_squat = 0;
   static int linecheck_pushup = 0;
   static int knee_check = 0;
-  static int sit_check = 0;
   static int situp_check = 0;
   static double min_left_elbow = 999;
+  static double min_left_Knee = 999;
   static int start_pushup = 0;
   static int cnt_pushup = 0;
   static int situp_cnt =0;
@@ -241,10 +241,10 @@ public class PoseGraphic extends Graphic {
     System.out.println();
     */
 
-    boolean squat = false; //나중에 선택사항 만들어서 선택됐을 때 true로 변경
+    boolean squat = true; //나중에 선택사항 만들어서 선택됐을 때 true로 변경
     boolean lunge = false;
-    boolean situp = true;
-    boolean pushup = true;
+    boolean situp = false;
+    boolean pushup = false;
     printAngle(pose, canvas);
 
     Paint textPaint = new Paint();
@@ -258,47 +258,37 @@ public class PoseGraphic extends Graphic {
 //      paint.setColor(Color.GREEN);
 //      canvas.drawRect(300, 250, 1120, 300, paint);
 //      canvas.drawRect(300, 1950, 1120, 2000, paint);
+//     canvas.drawText("knee angle: " + min_left_Knee, 100, 100, whitePaint);
+      if (leftKneeAngle < min_left_Knee && leftKneeAngle < 130)
+        min_left_Knee = leftKneeAngle; //앉았을때 각도
 
       if (rightKneeAngle >= 160) {  //서있을 때
-        chk_squat = 0;
+        if(min_left_Knee > 65 && min_left_Knee!=999 && !tts1.isSpeaking()){
+          tts1.speak("더 앉아주세요", TextToSpeech.QUEUE_FLUSH, null);
+        }
+
+        else if(knee_check == 0 && min_left_Knee <= 65 && !tts1.isSpeaking()){ //무릎이 발밖으로 안나오고 잘앉았을때 카운트
+          cnt_squat++;
+          tts1.speak(String.valueOf(cnt_squat), TextToSpeech.QUEUE_FLUSH, null);
+        }
         knee_check = 0;
-        sit_check = 0;
+        min_left_Knee = 999;
       }
       if (leftHeel.getPosition().x > leftFootIndex.getPosition().x) { // 왼쪽을 보고있을 때
         //무릎이 발밖으로 많이 나올경우
-        if (knee_check == 0 && leftKnee.getPosition().x < leftFootIndex.getPosition().x || rightKnee.getPosition().x < rightFootIndex.getPosition().x) {
-          knee_check++;
-          tts1.speak("무릎을 넣어주세요.", TextToSpeech.QUEUE_FLUSH, null);
-          tts1.playSilence(2000, TextToSpeech.QUEUE_ADD, null);
-          //knee_check = 0;
-        }
-        //서있지 않으면서 무릎과 엉덩이의 각도가 90도보다 작아지게 제대로 앉지 않았을 경우
-        else if (sit_check == 0 && chk_squat < 7 && Math.abs(leftHip.getPosition().x - leftKnee.getPosition().x) > 30 && (leftKnee.getPosition().y - leftHip.getPosition().y > 0 && leftKnee.getPosition().y - leftHip.getPosition().y <= 45)) {
-          sit_check++;
-          tts1.speak("더 앉아주세요.", TextToSpeech.QUEUE_FLUSH, null);
-          chk_squat++;
+        if (knee_check == 0 && leftKnee.getPosition().x+55 < leftFootIndex.getPosition().x) {
+          if(!tts1.isSpeaking()) { //현재 말하고 있는게 없다면
+            knee_check=1;
+            tts1.speak("무릎을 넣어주세요.", TextToSpeech.QUEUE_FLUSH, null);
+          }
         }
       } else { //오른쪽 보고 있을 때
         //무릎이 발밖으로 많이 나올경우
-        if (rightKneeAngle >= 160) { //서있을 때
-          chk_squat = 0;
-          knee_check = 0;
-          sit_check = 0;
-        }
-        if (knee_check == 0 && leftKnee.getPosition().x > leftFootIndex.getPosition().x + 40 || rightKnee.getPosition().x > rightFootIndex.getPosition().x + 40) {
-          knee_check++;
-          tts1.speak("무릎을 넣어주세요.", TextToSpeech.QUEUE_FLUSH, null);
-          tts1.playSilence(2000, TextToSpeech.QUEUE_ADD, null);
-
-          //knee_check = 0;
-        }
-        // 서있지 않으면서 무릎과 엉덩이의 각도가 90도보다 작아지게 제대로 앉지 않았을 경우
-        else if (sit_check == 0 && chk_squat < 7 && Math.abs(rightHip.getPosition().x - rightKnee.getPosition().x) > 30 && (rightKnee.getPosition().y - rightHip.getPosition().y > 0 && rightKnee.getPosition().y - rightHip.getPosition().y <= 45)) {
-          sit_check++;
-          tts1.speak("더 앉아주세요", TextToSpeech.QUEUE_FLUSH, null);
-          tts1.playSilence(2000, TextToSpeech.QUEUE_ADD, null);
-
-          chk_squat++;
+        if (knee_check == 0 && rightKnee.getPosition().x > rightFootIndex.getPosition().x + 55) {
+          if(!tts1.isSpeaking()) { //현재 말하고 있는게 없다면
+            knee_check = 1;
+            tts1.speak("무릎을 넣어주세요.", TextToSpeech.QUEUE_FLUSH, null);
+          }
         }
       }
     }
