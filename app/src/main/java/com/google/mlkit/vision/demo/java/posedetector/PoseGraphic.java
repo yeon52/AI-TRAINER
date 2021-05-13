@@ -32,6 +32,7 @@ import com.google.mlkit.vision.demo.GraphicOverlay;
 import com.google.mlkit.vision.demo.GraphicOverlay.Graphic;
 import com.google.mlkit.vision.demo.InferenceInfoGraphic;
 import com.google.mlkit.vision.demo.java.LivePreviewActivity;
+import com.google.mlkit.vision.demo.preference.UserInterface;
 import com.google.mlkit.vision.pose.Pose;
 import com.google.mlkit.vision.pose.PoseLandmark;
 
@@ -241,10 +242,10 @@ public class PoseGraphic extends Graphic {
     System.out.println();
     */
 
-    boolean squat = true; //나중에 선택사항 만들어서 선택됐을 때 true로 변경
-    boolean lunge = false;
-    boolean situp = false;
-    boolean pushup = false;
+    boolean squat = ((UserInterface) UserInterface.context_interface).squat; //나중에 선택사항 만들어서 선택됐을 때 true로 변경
+    boolean lunge = ((UserInterface) UserInterface.context_interface).lunge;
+    boolean situp = ((UserInterface) UserInterface.context_interface).situp;
+    boolean pushup = ((UserInterface) UserInterface.context_interface).pushup;
     printAngle(pose, canvas);
 
     Paint textPaint = new Paint();
@@ -397,46 +398,46 @@ public class PoseGraphic extends Graphic {
       }
     }
 
-      if (pushup) {
-        //사각형 틀 그리기
+    if (pushup) {
+      //사각형 틀 그리기
 //      Paint paint = new Paint();
 //      paint.setColor(Color.GREEN);
 //      canvas.drawRect(250, 300, 300, 1120, paint);
 //      canvas.drawRect(2050, 300, 2100, 1120, paint);
-          //canvas.drawText("minElbow: " + min_left_elbow, 100, 100, whitePaint);
-          //canvas.drawText("chk_pushup: " + chk_pushup, 100, 200, whitePaint);
-          //canvas.drawText("start_pushup: " + start_pushup, 100, 300, whitePaint);
-          //canvas.drawText("chk_line: " + linecheck_pushup, 100, 100, whitePaint);
-          if (leftElbowAngle < min_left_elbow && leftElbowAngle < 130)
-              min_left_elbow = leftElbowAngle; //상체가 최대 내려간 정도
+      //canvas.drawText("minElbow: " + min_left_elbow, 100, 100, whitePaint);
+      //canvas.drawText("chk_pushup: " + chk_pushup, 100, 200, whitePaint);
+      //canvas.drawText("start_pushup: " + start_pushup, 100, 300, whitePaint);
+      //canvas.drawText("chk_line: " + linecheck_pushup, 100, 100, whitePaint);
+      if (leftElbowAngle < min_left_elbow && leftElbowAngle < 130)
+        min_left_elbow = leftElbowAngle; //상체가 최대 내려간 정도
 
-          else if (leftElbowAngle > 140) { //올라와있을 때(올라가는중)
+      else if (leftElbowAngle > 140) { //올라와있을 때(올라가는중)
 
-              if (leftHipAngle <= 150 || leftHipAngle > 180 && start_pushup==1) {//내려 갔을 때 몸이 일자가 되어야함 (엉덩이가 내려가거나 올라가면 안됨)
-                  if(!tts1.isSpeaking() && linecheck_pushup == 0) { //현재 말하고 있는게 없다면
-                      tts1.speak("몸을 일자로 곧게 펴주세요.", TextToSpeech.QUEUE_FLUSH, null);
-                      linecheck_pushup = 1; //한번말했으면 말안하게
-                  }
-              }
-              else if (min_left_elbow > 90 && min_left_elbow != 999) { //각도가 90도 밑으로 내려가지 않으면
-                  if(!tts1.isSpeaking()) { //현재 말하고 있는게 없다면
-                      tts1.speak("더 내려가주세요.", TextToSpeech.QUEUE_FLUSH, null);
-                  }
-              }
-              else if(start_pushup==1 && min_left_elbow != 999){ //개수 세기
-                if(!tts1.isSpeaking()) { //현재 말하고 있는게 없다면
-                  cnt_pushup++;
-                  tts1.speak(String.valueOf(cnt_pushup), TextToSpeech.QUEUE_FLUSH, null);
-                  linecheck_pushup = 0; //라인체크 초기화
-                }
-              }
-              min_left_elbow = 999; //올라오면 각도 다시 초기화
-              start_pushup = 0;
-
-          } else { //내려갈때
-              start_pushup = 1;
+        if (leftHipAngle <= 150 || leftHipAngle > 180 && start_pushup==1) {//내려 갔을 때 몸이 일자가 되어야함 (엉덩이가 내려가거나 올라가면 안됨)
+          if(!tts1.isSpeaking() && linecheck_pushup == 0) { //현재 말하고 있는게 없다면
+            tts1.speak("몸을 일자로 곧게 펴주세요.", TextToSpeech.QUEUE_FLUSH, null);
+            linecheck_pushup = 1; //한번말했으면 말안하게
           }
+        }
+        else if (min_left_elbow > 90 && min_left_elbow != 999) { //각도가 90도 밑으로 내려가지 않으면
+          if(!tts1.isSpeaking()) { //현재 말하고 있는게 없다면
+            tts1.speak("더 내려가주세요.", TextToSpeech.QUEUE_FLUSH, null);
+          }
+        }
+        else if(start_pushup==1 && min_left_elbow != 999){ //개수 세기
+          if(!tts1.isSpeaking()) { //현재 말하고 있는게 없다면
+            cnt_pushup++;
+            tts1.speak(String.valueOf(cnt_pushup), TextToSpeech.QUEUE_FLUSH, null);
+            linecheck_pushup = 0; //라인체크 초기화
+          }
+        }
+        min_left_elbow = 999; //올라오면 각도 다시 초기화
+        start_pushup = 0;
+
+      } else { //내려갈때
+        start_pushup = 1;
       }
+    }
 
 
     // Draw inFrameLikelihood for all points

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    >
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="운동 목록"
+        android:textSize="50sp"
+        android:textColor="#000000"
+        tools:ignore="MissingConstraints"
+        />
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:id="@+id/button1"
+        android:textSize="70sp"
+        android:paddingLeft="0dp"
+        android:drawableStart="@drawable/squat_btn"
+        android:drawablePadding="-60dp"
+        android:text="스쿼트"
+        android:background="#F1FADB"
+        android:textColor="#414E59"
+        tools:ignore="MissingConstraints"
+        />
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:id="@+id/button2"
+        android:textSize="55sp"
+        android:paddingLeft="0dp"
+        android:drawableStart="@drawable/pushup_btn"
+        android:drawablePadding="10dp"
+        android:text="팔굽혀펴기"
+        android:background="#F1FADB"
+        android:textColor="#414E59"
+        tools:ignore="MissingConstraints"
+        />
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:id="@+id/button3"
+        android:textSize="70sp"
+        android:paddingLeft="0dp"
+        android:drawableStart="@drawable/lunge_btn"
+        android:drawablePadding="-60dp"
+        android:text="런지"
+        android:background="#F1FADB"
+        android:textColor="#414E59"
+        tools:ignore="MissingConstraints"
+        />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:id="@+id/button4"
+        android:textSize="40sp"
+        android:paddingLeft="0dp"
+        android:drawableStart="@drawable/situp_btn"
+        android:drawablePadding="10dp"
+        android:text="윗몸일으키기"
+        android:background="#F1FADB"
+        android:textColor="#414E59"
+        tools:ignore="MissingConstraints" />
+</LinearLayout>
