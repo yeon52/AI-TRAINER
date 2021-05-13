@@ -44,6 +44,7 @@
         <activity
             android:name=".preference.LoadingActivity"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -51,7 +52,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".preference.UserInterface"/>
+        <activity android:name=".preference.UserInterface"
+            android:screenOrientation="portrait"
+            />
 
         <activity
             android:name=".preference.SettingsActivity"

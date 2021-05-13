@@ -24,18 +24,31 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PointF;
+import android.media.AudioManager;
+import android.media.ToneGenerator;
+import android.os.Looper;
 import android.speech.tts.TextToSpeech;
 
+import androidx.annotation.WorkerThread;
+
+import com.google.common.base.Preconditions;
 import com.google.common.primitives.Ints;
 import com.google.mlkit.vision.common.PointF3D;
 import com.google.mlkit.vision.demo.GraphicOverlay;
 import com.google.mlkit.vision.demo.GraphicOverlay.Graphic;
 import com.google.mlkit.vision.demo.InferenceInfoGraphic;
 import com.google.mlkit.vision.demo.java.LivePreviewActivity;
+import com.google.mlkit.vision.demo.java.posedetector.classification.ClassificationResult;
+import com.google.mlkit.vision.demo.java.posedetector.classification.EMASmoothing;
+import com.google.mlkit.vision.demo.java.posedetector.classification.PoseClassifier;
+import com.google.mlkit.vision.demo.java.posedetector.classification.RepetitionCounter;
 import com.google.mlkit.vision.demo.preference.UserInterface;
 import com.google.mlkit.vision.pose.Pose;
 import com.google.mlkit.vision.pose.PoseLandmark;
 
+
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
