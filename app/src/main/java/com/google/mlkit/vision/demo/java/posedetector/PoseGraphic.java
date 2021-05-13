@@ -24,31 +24,18 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PointF;
-import android.media.AudioManager;
-import android.media.ToneGenerator;
-import android.os.Looper;
 import android.speech.tts.TextToSpeech;
 
-import androidx.annotation.WorkerThread;
-
-import com.google.common.base.Preconditions;
 import com.google.common.primitives.Ints;
 import com.google.mlkit.vision.common.PointF3D;
 import com.google.mlkit.vision.demo.GraphicOverlay;
 import com.google.mlkit.vision.demo.GraphicOverlay.Graphic;
 import com.google.mlkit.vision.demo.InferenceInfoGraphic;
 import com.google.mlkit.vision.demo.java.LivePreviewActivity;
-import com.google.mlkit.vision.demo.java.posedetector.classification.ClassificationResult;
-import com.google.mlkit.vision.demo.java.posedetector.classification.EMASmoothing;
-import com.google.mlkit.vision.demo.java.posedetector.classification.PoseClassifier;
-import com.google.mlkit.vision.demo.java.posedetector.classification.RepetitionCounter;
 import com.google.mlkit.vision.demo.preference.UserInterface;
 import com.google.mlkit.vision.pose.Pose;
 import com.google.mlkit.vision.pose.PoseLandmark;
 
-
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -265,7 +252,6 @@ public class PoseGraphic extends Graphic {
     textPaint.setColor(TEXT_COLOR);
     textPaint.setTextSize(TEXT_SIZE);
 
-
     if (squat) {
       //사각형 틀 그리기
 //      Paint paint = new Paint();
@@ -273,6 +259,9 @@ public class PoseGraphic extends Graphic {
 //      canvas.drawRect(300, 250, 1120, 300, paint);
 //      canvas.drawRect(300, 1950, 1120, 2000, paint);
 //     canvas.drawText("knee angle: " + min_left_Knee, 100, 100, whitePaint);
+
+      canvas.drawText("횟수: " + cnt_squat, 50, 100, textPaint);
+
       if (leftKneeAngle < min_left_Knee && leftKneeAngle < 130)
         min_left_Knee = leftKneeAngle; //앉았을때 각도
 
@@ -345,6 +334,8 @@ public class PoseGraphic extends Graphic {
       paint.setColor(Color.GREEN);
       canvas.drawRect(250, 300, 300, 1120, paint);
       canvas.drawRect(2050, 300, 2100, 1120, paint);
+
+      canvas.drawText("횟수: " + situp_cnt, 50, 100, textPaint);
 
       if (leftFootIndex.getPosition().x < leftKnee.getPosition().x) {  // 몸의 왼쪽 편이 보이도록 누워있을 때
         if (Math.abs(leftShoulder.getPosition().y - leftHip.getPosition().y) < 30) {  // 누워있을 때
@@ -421,6 +412,9 @@ public class PoseGraphic extends Graphic {
       //canvas.drawText("chk_pushup: " + chk_pushup, 100, 200, whitePaint);
       //canvas.drawText("start_pushup: " + start_pushup, 100, 300, whitePaint);
       //canvas.drawText("chk_line: " + linecheck_pushup, 100, 100, whitePaint);
+
+      canvas.drawText("횟수: " + cnt_pushup, 50, 100, textPaint);
+
       if (leftElbowAngle < min_left_elbow && leftElbowAngle < 130)
         min_left_elbow = leftElbowAngle; //상체가 최대 내려간 정도
 
