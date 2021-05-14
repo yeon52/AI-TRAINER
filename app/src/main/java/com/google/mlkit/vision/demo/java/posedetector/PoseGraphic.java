@@ -163,7 +163,7 @@ public class PoseGraphic extends Graphic {
     PoseLandmark leftFootIndex = pose.getPoseLandmark(PoseLandmark.LEFT_FOOT_INDEX);
     PoseLandmark rightFootIndex = pose.getPoseLandmark(PoseLandmark.RIGHT_FOOT_INDEX);
 
-
+/*
     if (leftHeel.getPosition().x > leftFootIndex.getPosition().x && rightHeel.getPosition().x > rightFootIndex.getPosition().x) { //왼쪽볼때
 //      // Draw all the points
 //      for (PoseLandmark landmark : landmarks) {
@@ -174,6 +174,7 @@ public class PoseGraphic extends Graphic {
 //        }
 //      }
       // Left body
+
       drawLine(canvas, leftShoulder, leftElbow, leftPaint);
       drawLine(canvas, leftElbow, leftWrist, leftPaint);
       drawLine(canvas, leftShoulder, leftHip, leftPaint);
@@ -225,7 +226,7 @@ public class PoseGraphic extends Graphic {
       drawLine(canvas, rightAnkle, rightHeel, rightPaint);
       drawLine(canvas, rightHeel, rightFootIndex, rightPaint);
     }
-
+*/
     /*
     System.out.println("왼쪽 어깨 : " + leftShoulder.getPosition());
     System.out.println("오른쪽 어깨 : " + rightShoulder.getPosition());
@@ -473,7 +474,7 @@ public class PoseGraphic extends Graphic {
 
 
     // Draw inFrameLikelihood for all points
-    if (showInFrameLikelihood) {
+    /*if (showInFrameLikelihood) {
       for (PoseLandmark landmark : landmarks) {
         canvas.drawText(
                 String.format(Locale.US, "%.2f", landmark.getInFrameLikelihood()),
@@ -481,7 +482,7 @@ public class PoseGraphic extends Graphic {
                 translateY(landmark.getPosition().y),
                 whitePaint);
       }
-    }
+    }*/
   }
 
 
