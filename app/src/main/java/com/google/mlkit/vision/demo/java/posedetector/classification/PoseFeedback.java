@@ -1,4 +1,5 @@
 package com.google.mlkit.vision.demo.java.posedetector.classification;
+
 import com.google.mlkit.vision.pose.Pose;
 import com.google.mlkit.vision.pose.PoseLandmark;
 
@@ -20,6 +21,7 @@ public class PoseFeedback {
     PoseLandmark rightKnee = pose.getPoseLandmark(PoseLandmark.RIGHT_KNEE);
     PoseLandmark leftAnkle = pose.getPoseLandmark(PoseLandmark.LEFT_ANKLE);
     PoseLandmark rightAnkle = pose.getPoseLandmark(PoseLandmark.RIGHT_ANKLE);
+
     PoseLandmark leftPinky = pose.getPoseLandmark(PoseLandmark.LEFT_PINKY);
     PoseLandmark rightPinky = pose.getPoseLandmark(PoseLandmark.RIGHT_PINKY);
     PoseLandmark leftIndex = pose.getPoseLandmark(PoseLandmark.LEFT_INDEX);
