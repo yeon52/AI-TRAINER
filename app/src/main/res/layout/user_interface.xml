@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFDEC"
+    >
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fontFamily="@font/binggrae"
+        android:gravity="center"
+        android:text="운동 목록"
+        android:textColor="#000000"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:drawableStart="@drawable/lunge_btn"
+        android:drawablePadding="-60dp"
+        android:fontFamily="@font/binggrae"
+        android:background="@drawable/round_border"
+        android:gravity="center"
+        android:paddingLeft="0dp"
+        android:text="런지"
+        android:textColor="#414E59"
+        android:textSize="30sp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:background="@drawable/round_border"
+        android:drawableStart="@drawable/pushup_btn"
+        android:drawablePadding="10dp"
+        android:fontFamily="@font/binggrae"
+        android:gravity="center"
+        android:paddingLeft="0dp"
+        android:text="팔굽혀펴기"
+        android:textColor="#414E59"
+        android:textSize="30sp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:background="@drawable/round_border"
+        android:drawableStart="@drawable/squat_btn"
+        android:drawablePadding="-60dp"
+        android:fontFamily="@font/binggrae"
+        android:paddingLeft="0dp"
+        android:text="스쿼트"
+        android:textColor="#414E59"
+        android:textSize="30sp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:background="@drawable/round_border"
+        android:drawableStart="@drawable/situp_btn"
+        android:drawablePadding="10dp"
+        android:fontFamily="@font/binggrae"
+        android:gravity="center"
+        android:paddingLeft="0dp"
+        android:text="윗몸일으키기"
+        android:textColor="#414E59"
+        android:textSize="30sp"
+        tools:ignore="MissingConstraints" />
+</LinearLayout>
