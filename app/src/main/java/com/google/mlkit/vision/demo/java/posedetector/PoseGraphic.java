@@ -75,6 +75,18 @@ public class PoseGraphic extends Graphic {
   static int situp_cnt =0;
   static int up_check=0;
   static double min_leftHip = 999;
+  static int lunge_knee = 0;
+  static int lunge_tilt = 0;
+  static int lunge_depth = 0;
+  static double min_left_knee_angle = 190.f;
+  static double min_right_knee_angle = 190.f;
+  static double min_hip = 0.f;
+  static double min_left_knee;
+  static double min_right_knee;
+  static double LUNGE_THRESHOLD = 40.f;
+  static double left_knee_toe_dist;
+  static double right_knee_toe_dist;
+  static int chk_lunge = 0;
 
   PoseGraphic(
           GraphicOverlay overlay,
@@ -298,32 +310,45 @@ public class PoseGraphic extends Graphic {
 
     if (lunge) {
       //사각형 틀 그리기
-//      Paint paint = new Paint();
-//      paint.setColor(Color.GREEN);
+      Paint paint = new Paint();
+      paint.setColor(Color.GREEN);
 //      canvas.drawRect(300, 250, 1120, 300, paint);
 //      canvas.drawRect(300, 1950, 1120, 2000, paint);
 
-      //상체가 기울어질 경우
-      if (Math.abs(leftShoulder.getPosition().x - leftHip.getPosition().x) > 10 || Math.abs(rightShoulder.getPosition().x - rightHip.getPosition().x) > 10) {
-        tts1.speak("상체를 똑바로 세워주세요.", TextToSpeech.QUEUE_ADD, null);
+      centerBodyTilt = 0.5f * rightBodyTilt + 0.5f * leftBodyTilt;
+      centerHip = 0.5f * rightHip.getPosition().y + 0.5f * leftHip.getPosition().y;
+
+      if(min_left_knee > leftKneeAngle) min_left_knee_angle = leftKneeAngle;
+      if(min_right_knee > rightKneeAngle) min_right_knee_angle = rightKneeAngle;
+      if(min_hip < centerHip) {
+        min_hip = centerHip;
+        min_left_knee = leftKnee.getPosition().y;
+        min_right_knee = rightKnee.getPosition().y;
+        left_knee_toe_dist = leftKnee.getPosition().x - leftFootIndex.getPosition().x;
+        right_knee_toe_dist = rightKnee.getPosition().x - rightFootIndex.getPosition().x;
       }
 
-      //무릎이 발밖으로 많이 나올경우
-      else if (leftKnee.getPosition().x + 20 < leftFootIndex.getPosition().x || rightKnee.getPosition().x + 20 < rightFootIndex.getPosition().x) {
-        tts1.speak("무릎을 넣어주세요.", TextToSpeech.QUEUE_ADD, null);
+      if (rightKneeAngle > 150.f || leftKneeAngle > 150.f) {
+        if(chk_lunge == 1) {
+          if(lunge_tilt == 1) tts1.speak("상체를 똑바로 세워주세요.",TextToSpeech.QUEUE_ADD,null);
+          if(left_knee_toe_dist * right_knee_toe_dist > 0) tts1.speak("무릎을 넣어주세요.", TextToSpeech.QUEUE_ADD, null);
+          if(min_hip + LUNGE_THRESHOLD < min_left_knee && min_hip + LUNGE_THRESHOLD < min_right_knee) tts1.speak("더 내려가주세요.", TextToSpeech.QUEUE_ADD, null);
+        }
+        lunge_knee = 0;
+        lunge_tilt = 0;
+        lunge_depth = 0;
+        chk_lunge = 0;
+        min_right_knee_angle = 160.f;
+        min_left_knee_angle = 160.f;
+        min_left_knee = 0.f;
+        min_right_knee = 0.f;
+        min_hip = 0.f;
       }
-
-      // 뒷발의 무릎이 지면에 거의 닿을정도로 앉아야한다.
-      // 앞발 뒷발 구분
       else {
-        if (leftFootIndex.getPosition().x < rightFootIndex.getPosition().x) { //왼발이 앞에 있을 때
-          if (rightHeel.getPosition().y > rightKnee.getPosition().y) {
-            tts1.speak("더 내려가주세요.", TextToSpeech.QUEUE_ADD, null);
-          }
-        } else { // 오른발이 앞에 있을 때
-          if (leftHeel.getPosition().y > leftKnee.getPosition().y) {
-            tts1.speak("더 내려가주세요.", TextToSpeech.QUEUE_ADD, null);
-          }
+        chk_lunge = 1;
+        //상체가 기울어질 경우
+        if (lunge_tilt == 0 && (70.f >= centerBodyTilt || centerBodyTilt >= 110.f)) {
+          lunge_tilt = 1;
         }
       }
     }
@@ -521,7 +546,21 @@ public class PoseGraphic extends Graphic {
               translateX(start.x), translateY(start.y), translateX(end.x), translateY(end.y), paint);
     }
   }
-
+  double getTilt(PoseLandmark firstPoint, PoseLandmark secondPoint) {
+    double result;
+    try {
+      result = Math.toDegrees(
+              atan2(secondPoint.getPosition().y - firstPoint.getPosition().y,
+                      secondPoint.getPosition().x - firstPoint.getPosition().x));
+      result = Math.abs(result);
+      if (result > 180.f) {
+        result = (360.f - result);
+      }
+    } catch (Exception e) {
+      result = -1.f;
+    }
+    return result;
+  }
   double getAngle(PoseLandmark firstPoint, PoseLandmark midPoint, PoseLandmark lastPoint) {
     double result;
     try {
@@ -552,6 +591,10 @@ public class PoseGraphic extends Graphic {
   double leftElbowAngle;
   double rightAnkleAngle;
   double leftAnkleAngle;
+  double rightBodyTilt;
+  double leftBodyTilt;
+  double centerBodyTilt;
+  double centerHip;
 
   void printAngle(Pose pose, Canvas canvas) {
     float text_size = 30.0f;
@@ -598,6 +641,9 @@ public class PoseGraphic extends Graphic {
             pose.getPoseLandmark(PoseLandmark.LEFT_KNEE),
             pose.getPoseLandmark(PoseLandmark.LEFT_ANKLE),
             pose.getPoseLandmark(PoseLandmark.LEFT_FOOT_INDEX));
+    rightBodyTilt = getTilt(pose.getPoseLandmark(PoseLandmark.RIGHT_SHOULDER), pose.getPoseLandmark(PoseLandmark.RIGHT_HIP));
+    leftBodyTilt = getTilt(pose.getPoseLandmark(PoseLandmark.LEFT_SHOULDER), pose.getPoseLandmark(PoseLandmark.LEFT_HIP));
+
         /*
         canvas.drawText("leftShoulder: " + leftShoulderAngle, x, y + text_size * 0, whitePaint);
         canvas.drawText("rightShoulder: " + rightShoulderAngle, x, y + text_size * 1, whitePaint);
