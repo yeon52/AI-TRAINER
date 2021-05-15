@@ -72,6 +72,7 @@ public class PoseGraphic extends Graphic {
   static double min_left_Knee = 999;
   static int start_pushup = 0;
   static int cnt_pushup = 0;
+  static int cnt_lunge = 0;
   static int situp_cnt =0;
   static int up_check=0;
   static double min_leftHip = 999;
@@ -267,11 +268,10 @@ public class PoseGraphic extends Graphic {
 
     if (squat) {
       //사각형 틀 그리기
-//      Paint paint = new Paint();
-//      paint.setColor(Color.GREEN);
-//      canvas.drawRect(300, 250, 1120, 300, paint);
-//      canvas.drawRect(300, 1950, 1120, 2000, paint);
-//     canvas.drawText("knee angle: " + min_left_Knee, 100, 100, whitePaint);
+      Paint paint = new Paint();
+      paint.setColor(Color.GREEN);
+      canvas.drawRect(150, 250, 950, 300, paint);
+      canvas.drawRect(150, 1800, 950, 1850, paint);
 
       canvas.drawText("횟수: " + cnt_squat, 50, 100, textPaint);
 
@@ -290,7 +290,7 @@ public class PoseGraphic extends Graphic {
         knee_check = 0;
         min_left_Knee = 999;
       }
-      if (leftHeel.getPosition().x > leftFootIndex.getPosition().x) { // 왼쪽을 보고있을 때
+      if (leftHeel.getPosition().x > leftFootIndex.getPosition().x) {
         //무릎이 발밖으로 많이 나올경우
         if (knee_check == 0 && leftKnee.getPosition().x+55 < leftFootIndex.getPosition().x) {
           if(!tts1.isSpeaking()) { //현재 말하고 있는게 없다면
@@ -316,6 +316,7 @@ public class PoseGraphic extends Graphic {
 //      canvas.drawRect(300, 250, 1120, 300, paint);
 //      canvas.drawRect(300, 1950, 1120, 2000, paint);
 
+      canvas.drawText("횟수: " + cnt_lunge, 50, 100, textPaint);
       centerBodyTilt = 0.5f * rightBodyTilt + 0.5f * leftBodyTilt;
       centerHip = 0.5f * rightHip.getPosition().y + 0.5f * leftHip.getPosition().y;
 
@@ -330,10 +331,14 @@ public class PoseGraphic extends Graphic {
       }
 
       if (rightKneeAngle > 150.f || leftKneeAngle > 150.f) {
-        if(chk_lunge == 1) {
-          if(lunge_tilt == 1) tts1.speak("상체를 똑바로 세워주세요.",TextToSpeech.QUEUE_ADD,null);
-          if(left_knee_toe_dist * right_knee_toe_dist > 0) tts1.speak("무릎을 넣어주세요.", TextToSpeech.QUEUE_ADD, null);
-          if(min_hip + LUNGE_THRESHOLD < min_left_knee && min_hip + LUNGE_THRESHOLD < min_right_knee) tts1.speak("더 내려가주세요.", TextToSpeech.QUEUE_ADD, null);
+        if(chk_lunge == 1 && !tts1.isSpeaking()) {
+          if(lunge_tilt == 1) tts1.speak("상체를 똑바로 세워주세요.",TextToSpeech.QUEUE_FLUSH,null);
+          else if(left_knee_toe_dist * right_knee_toe_dist > 0) tts1.speak("무릎을 넣어주세요.", TextToSpeech.QUEUE_FLUSH, null);
+          else if(min_hip + LUNGE_THRESHOLD < min_left_knee && min_hip + LUNGE_THRESHOLD < min_right_knee) tts1.speak("더 내려가주세요.", TextToSpeech.QUEUE_FLUSH, null);
+          else {
+            cnt_lunge++; //카운트
+            tts1.speak(String.valueOf(cnt_lunge), TextToSpeech.QUEUE_FLUSH, null);
+          }
         }
         lunge_knee = 0;
         lunge_tilt = 0;
@@ -358,8 +363,8 @@ public class PoseGraphic extends Graphic {
       //사각형 틀 그리기
       Paint paint = new Paint();
       paint.setColor(Color.GREEN);
-      canvas.drawRect(250, 300, 300, 1120, paint);
-      canvas.drawRect(2050, 300, 2100, 1120, paint);
+      //canvas.drawRect(250, 150, 300, 900, paint);
+      //canvas.drawRect(1700, 150, 1750, 900, paint);
 
       canvas.drawText("횟수: " + situp_cnt, 50, 100, textPaint);
 

@@ -1,13 +1,16 @@
 package com.google.mlkit.vision.demo.preference;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.mlkit.vision.demo.R;
@@ -28,6 +31,7 @@ public class UserInterface extends AppCompatActivity {
         setContentView(R.layout.user_interface);
 
         permissionCheck();
+        NoticeDialog();
 
         context_interface = this;
 
@@ -92,7 +96,22 @@ public class UserInterface extends AppCompatActivity {
             }
         }
     }
+    //안내사항 공지
+    private void NoticeDialog(){
+        AlertDialog.Builder ad = new AlertDialog.Builder(UserInterface.this);
+        ad.setIcon(R.mipmap.loudspeaker);
+        ad.setTitle("안내사항");
+        ad.setMessage("\n1. '푸쉬업', '윗몸일으키기' 는 휴대폰을 가로로 두고 이용해 주세요.\n\n2. 카메라 화면 위아래에 있는 선에 머리와 발을 맞춰 촬영해 주세요.");
 
+        ad.setPositiveButton("확인했어요", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        ad.show();
+    }
     // Request Permission에 대한 결과 값을 받아올 수 있습니다.
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
