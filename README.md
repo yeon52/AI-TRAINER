@@ -1,83 +1,30 @@
-# ML Kit Vision Quickstart Sample App
+# AI-Trainer
 
-## Introduction
+---
 
-This ML Kit Quickstart app demonstrates how to use and integrate various vision based ML Kit features into your app.
+올바른 자세의 홈트레이닝을 위해 운동 자세를 교정해주는 AI 운동 자세 교정 애플리케이션 
 
-## Feature List
+## 개발 환경
 
-Features that are included in this Quickstart app:
-* [Object Detection](https://developers.google.com/ml-kit/vision/object-detection/android) - Detect, track, and classify objects in real time and static images
-* [Face Detection](https://developers.google.com/ml-kit/vision/face-detection/android) - Detect faces in real time and static images
-* [Text Recognition](https://developers.google.com/ml-kit/vision/text-recognition/android) - Recognize text in real time and static images
-* [Barcode Scanning](https://developers.google.com/ml-kit/vision/barcode-scanning/android)  - Scan barcodes in real time and static images
-* [Image Labeling](https://developers.google.com/ml-kit/vision/image-labeling/android) - Label images in real time and static images
-* [Custom Image Labeling - Birds](https://developers.google.com/ml-kit/vision/image-labeling/custom-models/android) - Label images of birds with a custom TensorFlow Lite model.
-* [Pose Detection](https://developers.google.com/ml-kit/vision/pose-detection/android) - Detect the position of the human body in real time.
-* [Selfie Segmentation](https://developers.google.com/ml-kit/vision/selfie-segmentation/android) - Segment people from the background in real time.
+---
 
-<img src="../screenshots/quickstart-picker.png" width="220"/> <img src="../screenshots/quickstart-image-labeling.png" width="220"/> <img src="../screenshots/quickstart-object-detection.png" width="220"/> <img src="../screenshots/quickstart-pose-detection.png" width="220"/>
+- Android Studio
+- Java
+- Google ML Kit
 
-## Getting Started
+## 구현
 
-* Run the sample code on your Android device or emulator
-* Try extending the code to add new features and functionality
+---
 
-## How to use the app
+- ML Kit 속 Vision API를 이용해 화면 속 사람의 스켈레톤 좌표 추출
+- 바른자세와 추출한 좌표를 비교하여 맞지 않을 경우 피드백 제공
 
-This app supports three usage scenarios: Live Camera, Static Image, and CameraX enabled live camera.
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/faf1d94b-518d-4f32-9430-ffa2e7ec7ae9/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/faf1d94b-518d-4f32-9430-ffa2e7ec7ae9/Untitled.png)
 
-### Live Camera scenario
-It uses the camera preview as input and contains these API workflows: Object detection & tracking, Face Detection, Text Recognition, Barcode Scanning, Image Labeling, and Pose Detection. There's also a settings page that allows you to configure several options:
-* Camera
-    * Preview size - Specify the preview size of rear/front camera manually (Default size is chosen appropriately based on screen size)
-    * Enable live viewport - Toggle between blocking camera preview by API processing and result rendering or not
-* Object detection / Custom Object Detection
-    * Enable multiple objects -- Enable multiple objects to be detected at once
-    * Enable classification -- Enable classification for each detected object
-* Face Detection
-    * Landmark mode -- Toggle between showing no or all facial landmarks
-    * Contour mode -- Toggle between showing no or all contours
-    * Classification mode -- Toggle between showing no or all classifications (smiling, eyes open/closed)
-    * Performance mode -- Toggle between two operating modes (Fast or Accurate)
-    * Face tracking -- Enable or disable face tracking
-    * Minimum face size -- Choose the proportion of the head width to the image width
-* Pose Detection
-    * Performance mode -- Allows you to switch between "Fast" and "Accurate" operation mode
-    * Show in-frame likelihood -- Displays InFrameLikelihood score for each landmark
-    * Visualize z value -- Uses different colors to indicate z difference (red: smaller z, blue: larger z)
-    * Rescale z value for visualization -- Maps the smallest z value to the most red and the largest z value to the most blue. This makes z difference more obvious
-    * Run classification -- Classify squat and pushup poses. Count reps in streaming mode.
-* Selfie Segmentation
-    * Enable raw size mask -- Asks the segmenter to return the raw size mask which matches the model output size.
+## 실행 화면
 
-### Static Image scenario
-The static image scenario is identical to the live camera scenario, but instead relies on images fed into the app through the gallery.
+---
 
-### CameraX Live Preview scenario
-The CameraX live preview scenario is very similar to the native live camera scenario, but instead relies on CameraX live preview. Note: CameraX is only supported on API level 21+.
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/04c03be4-6c5b-4a8c-8492-9ddc635065e8/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/04c03be4-6c5b-4a8c-8492-9ddc635065e8/Untitled.png)
 
-## Support
-
-* [Documentation](https://developers.google.com/ml-kit/guides)
-* [API Reference](https://developers.google.com/ml-kit/reference/android)
-* [Stack Overflow](https://stackoverflow.com/questions/tagged/google-mlkit)
-
-## License
-
-Copyright 2020 Google, Inc.
-
-Licensed to the Apache Software Foundation (ASF) under one or more contributor
-license agreements.  See the NOTICE file distributed with this work for
-additional information regarding copyright ownership.  The ASF licenses this
-file to you under the Apache License, Version 2.0 (the "License"); you may not
-use this file except in compliance with the License.  You may obtain a copy of
-the License at
-
-  http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
-License for the specific language governing permissions and limitations under
-the License.
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f765019d-cf38-47bf-988a-a9f1f91766e3/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f765019d-cf38-47bf-988a-a9f1f91766e3/Untitled.png)
