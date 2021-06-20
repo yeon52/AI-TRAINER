@@ -1,7 +1,8 @@
 # AI-Trainer
 
 
-올바른 자세의 홈트레이닝을 위해 운동 자세를 교정해주는 AI 운동 자세 교정 애플리케이션 
+<b>올바른 자세의 홈트레이닝을 위해 운동 자세를 교정해주는 AI 운동 자세 교정 애플리케이션</b><br><br>
+소개 ppt (시연영상 포함) -> https://drive.google.com/file/d/19J1dFucyCaGTXAtKPf8QEdziHRJMQ5cX/view?usp=sharing
 
 ## 개발 환경
 
